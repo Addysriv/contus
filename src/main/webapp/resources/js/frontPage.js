@@ -1,0 +1,4 @@
+function startTest(){
+	
+	$('#modalButton').click();
+}

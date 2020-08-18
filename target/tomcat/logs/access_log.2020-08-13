@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:00:01:34 +0530] "GET /Contus/ HTTP/1.1" 200 23306 http-bio-8080-exec-1 88
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:00:01:46 +0530] "GET /Contus/saveUser?userName=asdas&userEmail=asd%40ds.sd&userCoupon= HTTP/1.1" 200 7 http-bio-8080-exec-1 1487
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:10:32 +0530] "GET /Contus HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:10:33 +0530] "GET /Contus/ HTTP/1.1" 200 23306 http-bio-8080-exec-3 551
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:11:58 +0530] "GET /Contus/saveUser?userName=aditya&userEmail=addy%40gmail.com&userCoupon= HTTP/1.1" 200 7 http-bio-8080-exec-5 3698
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:19:30 +0530] "GET /Contus/saveUser?userName=aditya&userEmail=addy%40gmail.com&userCoupon= HTTP/1.1" 200 7 http-bio-8080-exec-8 14
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:20:27 +0530] "GET /Contus/choice HTTP/1.1" 302 - http-bio-8080-exec-9 20
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:20:31 +0530] "GET /Contus/test HTTP/1.1" 200 7849 http-bio-8080-exec-9 3607
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:28:57 +0530] "GET /Contus/ HTTP/1.1" 200 23306 http-bio-8080-exec-4 6
+0:0:0:0:0:0:0:1 - - [13/Aug/2020:16:29:13 +0530] "GET /Contus/saveUser?userName=adsaasd&userEmail=asd%40ds.sd&userCoupon= HTTP/1.1" 200 7 http-bio-8080-exec-4 10
