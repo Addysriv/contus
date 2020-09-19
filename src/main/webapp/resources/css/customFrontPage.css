@@ -10,6 +10,15 @@ font-stretch: normal;
     font-weight: 600;
 }
 
+button.active.focus, button.active:focus,
+button.focus, button:active.focus, 
+button:active:focus, button:focus {
+  outline: none;
+  box-shadow: none;
+  
+}
+
+
 #gridRowDiv p{
 
  
@@ -28,15 +37,9 @@ display: block;
 }
 
 
-
-#testInfo row p{
-
-
-}
 .faqText{
 
   font-family: AvenirNext;
-
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -54,7 +57,8 @@ display: block;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #ffffff;}
+  color: #ffffff;
+  }
   
   
  #testButton{
@@ -74,21 +78,20 @@ display: block;
 input[type=text] {
   width: 60%;
   padding: 8px 3px;
-  
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: 2px solid white;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   outline: none;
 }
 
 input[type=text]:focus {
-  border: 3px solid #ff7d00;
+  border: 3px solid rgba(255, 142, 34, 0.31);;
 }
   #payButton , #continueButton{
 	border-radius: 30px;
-	width: 172px;
-	height: 47px;
+	width: 220px;
+	height: 54px;
 	background-color: #ff7d00;
 	border-color: #ff7d00;
 	border-bottom-style: hidden;
@@ -106,4 +109,12 @@ input[type=text]:focus {
  #jumbotronFaqDiv{
   height: 600% !important;
  }
+ #orangeImage{
+ height:320px !important;
+ }
+ 
+ #handImage{
+ height:420px !important;
+ }
+ 
  }
