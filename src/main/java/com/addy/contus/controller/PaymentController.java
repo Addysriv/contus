@@ -49,12 +49,14 @@ public class PaymentController {
 	
 	@RequestMapping("/saveUser")
 	public @ResponseBody String saveUserData(@RequestParam("userName") String name,@RequestParam("userEmail") String email,
-											@RequestParam("userEmail") String couponCode,
+											@RequestParam("userCoupon") String couponCode,
+											@RequestParam("paymentMode")String payment,
 											HttpServletRequest request,HttpServletResponse response) {
 		System.out.println("Data saved start");
 		System.out.println(name);
 		System.out.println(email);
 		System.out.println(couponCode);
+		System.out.println(payment);
 		
 		return "success";
 	}

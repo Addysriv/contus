@@ -120,7 +120,7 @@ $( document ).ready(function() {
 			data-target="#myModal" style="background-color: white;border-color: white;"></button>
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="myModal" role="dialog" style="margin-top: -5%;">
 			<div class="modal-dialog modal-lg">
 
 				<!-- Modal content-->
@@ -130,13 +130,14 @@ $( document ).ready(function() {
 						<div class="modal-title">
 							<img src="<c:url value="/resources/Logo.png" ></c:url>"
 								alt="Contus Logo" style="width: 6%;">
+								
 						</div>
+						
+						
 						<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button>
 					</div>
 					<div class="modal-body">
-					<iframe name="someFrame" src="/Contus/paymentModal" width="100%" height="600">
-					
-					</iframe>
+						<jsp:include page="paymentModal" />  
 					
 					</div>
 

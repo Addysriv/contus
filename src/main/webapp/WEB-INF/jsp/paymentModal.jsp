@@ -29,25 +29,14 @@
 /* var stripe = Stripe('pk_test_51HCljJGjv13unDRNVjZNRdMZA3NUrTAwQUyDAZix6GyjqyGz0NB30EbtW0HahKdSbN8SujIc45ojwpUtFHraAaDA00JOUq9XoZ');
  */
 var defaultLang='';
+ var klarnaClicked=true;
+ var swishClicked=false;
+ 
 $( document ).ready(function() {
 	$('#paymentDiv').hide();
 	
 	$('#payButton').on("click",function(){
-		debugger;
-		/* stripe.redirectToCheckout({
-			  lineItems: [{
-			    price: 'price_1HEAUIGjv13unDRN0ROam4KV', // Replace with the ID of your price
-			    quantity: 1,
-			  }],
-			  mode: 'payment',
-			  successUrl: 'http://localhost:8080/Contus/choice',
-			  cancelUrl: 'http://localhost:8080/Contus/paymentCancel',
-			  customerEmail: 'customer@example.com',
-			}).then(function (result) {
-			  // If `redirectToCheckout` fails due to a browser or network
-			  // error, display the localized error message to your customer
-			  // using `result.error.message`.
-			}); */
+		continuePayment();
 		
 	});
 	
@@ -90,7 +79,34 @@ $( document ).ready(function() {
 
 });
 
+function selectPaymentMethod(num){
+	if(num==1)
+	{
+		if(swishClicked==true){
+			$('#myCheckbox2').trigger('click')
+			swishClicked=false;
+		}
+			klarnaClicked=true;
+			$('#klarnaLabel').css("background-color","rgba(255, 142, 34, 0.31)");
+			$('#swishLabel').css("background-color","white");
+	}
+	else
+		{
+		if(klarnaClicked==true){
+			$('#myCheckbox1').trigger('click')
+			klarnaClicked=false;
+		}
+		swishClicked=true;
+		$('#swishLabel').css("background-color","rgba(255, 142, 34, 0.31)");
+		$('#klarnaLabel').css("background-color","white");
+		}
+}
 function continueCheckout(){
+$('#userInfo').hide();
+$('#paymentDiv').show();
+}
+
+function continuePayment(){
 	
 	var name=$('#userName').val();
 	var email=$('#userEmail').val();
@@ -111,6 +127,15 @@ function continueCheckout(){
 		$('#incorrectEmail').text('Incorrect Email');
 		return;
 	}
+	var payment="";
+	if(swishClicked==true)
+	{
+		payment="swish";
+	}
+	else 
+		{
+		payment="klarna";
+		}
 	
 	$.ajax({ 
         url : "${pageContext.request.contextPath}/saveUser",
@@ -119,11 +144,11 @@ function continueCheckout(){
 			userName : name,
 			userEmail : email,
 			userCoupon : coupon,
+			paymentMode : payment
 			}), 
 			success : function(jqXHR) {
 				alert('success');
-				$('#userInfo').hide();
-				$('#paymentDiv').show();
+				
 				
 			}
 	});
@@ -137,48 +162,74 @@ function continueCheckout(){
 
 
 <div id="userInfo">
-		<div class="row"><br><br></div>
+
+		<div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8" id="paymentModalHeading">Tell us about yourself</div>
+		</div>
+			<div class="row"><br><br></div>
 						<div class="row">
-								<div class="col-sm-2"></div>
+								<div class="col-sm-3"></div>
 								
-								<div class="col-sm-2"><b>Full Name : </b></div>
-								<div class="col-sm-8">
-									<input type="text" id="userName" >
+								<div class="col-sm-8" >
+									<input type="text" id="userName" placeholder="   Name" style="width:80%;border-radius: 14px;background-color: rgba(255, 142, 34, 0.31);">
 								</div>		
 						</div>
-						<div class="row"><br><br></div>
+						<div class="row"><br></div>
 							<div class="row">
-								<div class="col-sm-2"></div>
-								<div class="col-sm-2"><b>Email : </b></div>
+								<div class="col-sm-3"></div>
+								
 								<div class="col-sm-8">
-									<input type="text"  id="userEmail" ><br>
+									<input type="text"  id="userEmail" placeholder="   Email" style="width:80%;border-radius: 14px;background-color: rgba(255, 142, 34, 0.31);"><br>
 									<span id="incorrectEmail" style="color:red;margin-left:16%;"></span>
 								</div>		
 						   </div>
-						   <div class="row"><br></div>
+						   <!-- <div class="row"><br></div>
 						   <div class="row"><div class="col-sm-4"></div>
 						   <div class="col-sm-6" style="font-size:10px;">*
 						   Please provide correct information as this will be used for report.</div></div>
-						   
+						    -->
 						   <div class="row"><br></div>
 						   
 						   	
 							<div class="row">
-								<div class="col-sm-2"></div>
+								<div class="col-sm-3"></div>
 								
-								<div class="col-sm-2" style="font-size: smaller;"><b>Coupon Code :</b> (If any provided by company)</div>
+								<!-- <div class="col-sm-2" style="font-size: smaller;"><b>Coupon Code :</b> (If any provided by company)</div> -->
 								<div class="col-sm-8">
-									<input type="text" id="userCoupon" >
+									<input type="text" placeholder="   Coupon Code" id="userCoupon" style="width:80%;border-radius: 
+									14px;background-color: rgba(255, 142, 34, 0.31);">
 								</div>		
 							</div>
-							<div class="row"><br><br></div>
+			<div class="row"><br></div>
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-6" style="text-align:center;">
+							<h4>Choose Payment Method</h4>
+			
+						</div>
+						</div>
+			<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3">
+					<input type="checkbox" id="myCheckbox1" name="paymentType" /> <label id="klarnaLabel" for="myCheckbox1"><img
+						src="resources/klarna.jpg" onclick="selectPaymentMethod(1);"/></label> 
+				</div>
+				<div class="col-sm-3">
+				<input type="checkbox" id="myCheckbox2" name="paymentType" />
+					<label for="myCheckbox2" id="swishLabel"><img src="resources/swish.png" onclick="selectPaymentMethod(2);"/></label>
+				</div>
+		</div>
+
+		<div class="row"><br><br></div>
 						<div class="row">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-5">
 									<button type="button" id="continueButton"
 										class="btn btn-lg vertical-center">
 										<span id="testButtonModal" onclick="continueCheckout();"
-											style="font-family: AvenirNext; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: normal; letter-spacing: 1.2px; text-align: center; color: #ffffff;">
+											style="font-family: AvenirNext; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; 
+											line-height: normal; letter-spacing: 1.2px; text-align: center; color: #ffffff;">
 											Continue</span>
 									</button>
 								</div>
@@ -208,140 +259,82 @@ function continueCheckout(){
 						<div class="row"><br></div>
 					</div>
 					
-					
-		
-		<template>
-  <div class="klarna-checkout" id="klarna-checkout">
-    <div id="klarna-render-checkout" />
-    <div v-if="checkout.loading">
-      <loading-spinner />
-    </div>
-    <div v-if="checkout.error">
-      Loading Klarna failed
-    </div>
-    <div v-if="checkout.snippet" v-html="checkout.snippet" /> <!-- eslint-disable-line vue/no-v-html -->
-  </div>
-</template>
 
-<script>
-import { mapGetters } from 'vuex'
-import { callApi } from '../helpers'
-import { currentStoreView } from '@vue-storefront/core/lib/multistore'
-import LoadingSpinner from 'theme/components/theme/blocks/AsyncSidebar/LoadingSpinner.vue'
-import { isServer } from '@vue-storefront/core/helpers'
-import { KlarnaEvents } from '../types'
-import { plugins } from '../plugins'
-export default {
-  name: 'KlarnaCheckout',
-  components: {
-    LoadingSpinner
-  },
-  async mounted () {
-    if (!isServer) {
-      this.upsertOrder()
-    }
-  },
-  beforeMount () {
-    this.$bus.$on('klarna-update-order', this.configureUpdateOrder)
-  },
-  beforeDestroy () {
-    this.$bus.$off('klarna-update-order')
-  },
-  computed: {
-    ...mapGetters({
-      order: 'kco/order',
-      checkout: 'kco/checkout',
-      totals: 'kco/platformTotals',
-      hasTotals: 'kco/hasTotals',
-      coupon: 'kco/coupon'
-    })
-  },
-  watch: {
-    coupon (newValue, oldValue) {
-      if (!oldValue || newValue.code !== oldValue.code) {
-        this.$bus.$emit('klarna-update-order')
-      }
-    },
-    totals (newValue, oldValue) {
-      if (oldValue) {
-        if (newValue.qty !== oldValue.qty || newValue.base_grand_total !== oldValue.base_grand_total) {
-          const storeView = currentStoreView()
-          const countryId = this.$store.state.checkout.shippingDetails.country ? this.$store.state.checkout.shippingDetails.country : storeView.tax.defaultCountry
-          this.$store.dispatch('cart/syncShippingMethods', {
-            country_id: countryId
-          })
-          this.$bus.$emit('klarna-update-order')
-        }
-      }
-    }
-  },
-  methods: {
-    setupKlarnaListeners () {
-      const events = {}
-      Object.values(KlarnaEvents).forEach(event => {
-        events[event] = data => {
-          plugins.filter(plugin => plugin.on && plugin.on[event]).forEach(plugin => {
-            plugin.on[event](data)
-          })
-          this.$bus.$emit('klarna-event-' + event, data)
-        }
-      })
-      callApi(api => api.on(events))
-      // Todo: refactor
-      this.$bus.$on('klarna-order-loaded', () => {
-        setTimeout(async () => {
-          const order = await this.$store.dispatch('kco/fetchOrder', this.checkout.orderId)
-          this.onKcoAddressChange({
-            totalSegments: this.totals.total_segments,
-            shippingAddress: order.shipping_address
-          })
-        }, 2000)
-      })
-    },
-    async upsertOrder () {
-      await this.$store.dispatch('kco/createOrder')
-      const { default: postscribe } = await import('postscribe')
-      postscribe('#klarna-render-checkout', this.checkout.snippet)
-      await Promise.resolve()
-      this.setupKlarnaListeners()
-    },
-    async configureUpdateOrder () {
-      if (!this.checkout.order || !this.checkout.order.order_id) {
-        return
-      }
-      await this.suspendCheckout()
-      await this.upsertOrder()
-      await this.resumeCheckout()
-    },
-    suspendCheckout () {
-      return callApi(api => api.suspend())
-    },
-    resumeCheckout () {
-      return callApi(api => api.resume())
-    },
-    onKcoAddressChange (orderData) {
-      if (orderData.shippingAddress.postal_code) {
-        this.$bus.$emit('kcoAddressChange', orderData)
-      }
-      return callApi(api => api.on({
-        billing_address_change: async () => {
-          this.$bus.$emit('klarna-order-loaded')
-        }
-      }))
-    }
-  }
-}
-</script>
 
-<style lang="scss">
-div.wrapper.wrapper {
-  height: 30vh;
-  max-width: 100%;
-  padding-left: 25px;
-}
-#klarna-unsupported-page {
+
+
+</body>
+
+<style>
+
+
+input[type="checkbox"][id^="myCheckbox"] {
   display: none;
 }
-</style>			
-</body>
+
+label {
+  border: 1px solid #fff;
+
+  position: relative;
+  margin: 15px;
+  cursor: pointer;
+}
+
+label:before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 100px;
+  width: 100px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked + label {
+  border-color: #ddd;
+}
+
+:checked + label:before {
+  content: "";
+  background-color: rgba(255, 142, 34, 0.31);
+  
+}
+
+:checked + label img {
+  transform: scale(0.9);
+  /* box-shadow: 0 0 5px #333; */
+  z-index: -1;
+}
+
+#paymentModalHeading {
+font-family: AvenirNext;
+    font-size: xx-large;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    /* letter-spacing: 2.4px; */
+    text-align: center;
+    color: #2d2d2d;
+}
+
+
+</style>
+
+
 </html>
