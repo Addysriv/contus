@@ -61,6 +61,8 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
     </property>
 </bean>
 
+<bean id="restTemplate" class="org.springframework.web.client.RestTemplate"/>
+
 <context:property-placeholder location="/WEB-INF/property/configData.properties"/>
 
 </beans>

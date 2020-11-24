@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ -->
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="resources/css/customFrontPage.css">
 
@@ -25,9 +28,9 @@
 	
 <script>
 
- var defaultLang='';
- var userLang = navigator.language || navigator.userLanguage;
- defaultLang=userLang;
+ var defaultLanguage='';
+ var userLang = '${lang}';
+ defaultLanguage=userLang;
  
  var klarnaClicked=false;
  var swishClicked=false;
@@ -35,12 +38,43 @@
  var invalidErrorCode='<spring:message code="label.contus.invalidCoupon" />';
  var couponApplied='<spring:message code="label.contus.validCoupon" />';
  var currency= '<spring:message code="label.contus.sek" />';
+ 
+ function checkCheckBox(){
+	 if(document.getElementById('termsCheckBox').checked==true)
+		{
+		  
+		  $('#payButton').css("background-color","#ff7d00");
+		  $('#payButton').css("border-color","#ff7d00");
+		  $('#payButton').css("border-right","#ff7d00");
+		  
+		}
+	 else
+		 {
+		  
+		  $('#payButton').css("background-color","#b2b2b2");
+		  $('#payButton').css("border-color","#b2b2b2");
+		  $('#payButton').css("border-right","#b2b2b2");
+		  
+		 
+		 }
+	 
+	 
+ }
+ 
 $( document ).ready(function() {
 	$('#paymentDiv').hide();
 	$('#paymentOrderDiv').hide();
 	$('#payButton').on("click",function(){
-		$(".modalDiv").show();
-		continuePayment();
+		if(document.getElementById('termsCheckBox').checked==true)
+		{
+			$(".modalDiv").show();
+			continuePayment();
+		}
+		else
+			{
+			
+			}
+		
 		
 	});
 	
@@ -49,9 +83,9 @@ $( document ).ready(function() {
 		if($('#userCoupon').val()=="")
 			{
 			checkIfCouponValid=true;
-			$('#couponError').text('');
+			$('#couponError').text('');/* 
 			$('#userCoupon').css("border-color","rgba(255, 142, 34, 0.31)");	
-			$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)");	
+			$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)");	 */
 			}
 		else{
 		$.ajax({ 
@@ -69,17 +103,17 @@ $( document ).ready(function() {
 						{
 							$('#amountToPay').text("0.00");
 							$('#couponError').text(couponApplied+' '+'0.00'+' '+currency);
-							$('#couponError').css("color","orange");
+							$('#couponError').css("color","orange");/* 
 							$('#userCoupon').css("border-color","rgba(255, 142, 34, 0.31)");	
-							$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)");	
+							$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)"); */	
 						}
 						else{
 							jqXHR=jqXHR.substring(0, 2)+"."+jqXHR.substring(2, 4);
 						$('#amountToPay').text(jqXHR);
 						$('#couponError').text(couponApplied+' '+jqXHR+' '+currency);
-						$('#couponError').css("color","orange");
+						$('#couponError').css("color","orange");/* 
 						$('#userCoupon').css("border-color","rgba(255, 142, 34, 0.31)");	
-						$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)");	
+						$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)");	 */
 						}	
 					}
 					else
@@ -88,7 +122,7 @@ $( document ).ready(function() {
 						checkIfCouponValid=false;
 					    $('#couponError').text(invalidErrorCode);
 					    $('#couponError').css("color","red");
-					    $('#userCoupon').css("border-color","red");
+					   /*  $('#userCoupon').css("border-color","red"); */
 					}
 				}
 		});
@@ -159,20 +193,41 @@ function selectPaymentMethod(num){
 function continueCheckout(){
 	var flag = true;
 	debugger;
-	var coupon=$('#userCoupon').val();
-	/* var payment=$("input[name='paymentMethod']:checked"). val();
-	if(payment==undefined)
+	$("#userMobile").hide();
+	 if($("input[name='paymentMethod']:checked").val()==undefined && $('#userCoupon').val()=="")
+	 {
+		 return;
+	 }
 	
-	couponError
-	 */
+	var coupon=$('#userCoupon').val();
+
+	
+	if($("input[name='paymentMethod']:checked").val()=="swish")
+	{
+		$("#userName").show();
+		$("#userEmail").show();
+		$("#userMobile").show();
+	}
+	
 	if($('#amountToPay').text()=="0.00"){
 		$("#userName").show();
 		$("#userEmail").show();
+		$("#userMobile").hide();
 	}
 	else{
+		
 		$("#userName").hide();
 		$("#userEmail").hide();
+		$("#userMobile").hide();
+		
+		if($("input[name='paymentMethod']:checked").val()=="swish")
+		{
+			$("#userName").show();
+			$("#userEmail").show();
+			$("#userMobile").show();
+		}
 	}
+	
 	if(checkIfCouponValid==true){	
 	$('#userInfo').hide();
 	$('#paymentDiv').show();
@@ -181,12 +236,30 @@ function continueCheckout(){
 
 function continuePayment(){
 	
+	 
+	 if($('#userName').val()=="" && $('#amountToPay').text()=="0.00")
+		 {
+		 $('#userName').trigger('change');
+		 
+		 return;
+		 }
+	 
+	 if($('#userEmail').val()=="" && $('#amountToPay').text()=="0.00")
+	 {
+		 $('#userEmail').trigger('change');
+		 return;
+	 }
+	
+	 
 	var name=$('#userName').val();
 	var email=$('#userEmail').val();
 	var coupon=$('#userCoupon').val();
 	
-	var payment=$("input[name='paymentMethod']:checked"). val();
-
+	var payment=$("input[name='paymentMethod']:checked").val();
+	if(payment==undefined)
+		{
+		payment="Coupon";
+		}
 	if($('#incorrectEmail').text()=="")
 		{
 		
@@ -204,7 +277,7 @@ function continuePayment(){
 			userEmail : email,
 			userCoupon : coupon,
 			paymentMode : payment,
-			lang:defaultLang
+			lang:defaultLanguage
 			}), 
 			success : function(jqXHR) {
 				console.log('success');
@@ -219,7 +292,7 @@ function continuePayment(){
 				}
 				else if(jqXHR=='error'){
 					console.log("error occured");
-					window.location.href = 'http://localhost:8080/Contus';
+					window.location.href = '${pageContext.request.contextPath}/errorPage';
 				}
 				else{
 				$('#KCO').val(jqXHR);
@@ -233,98 +306,111 @@ function continuePayment(){
 	
 }
 
+
+function openGdpr(){
+	
+	window.open("${pageContext.request.contextPath}/termsAndConditions");
+}
+
+function openPrivacyPolicy(){
+	
+	window.open("${pageContext.request.contextPath}/privacyPolicy");
+}
+
 </script>
 </head>
 <body>
 
 
 <div id="userInfo">
-
-						   <div class="row"><br></div>
-						   
-						   	
+				
 					<div class="row">
 						<div class="col-sm-3"></div>
-						<div class="col-sm-6" style="text-align:center;" id="paymentChooseText">
-							<h4><spring:message code="label.contus.paymentMethod" />
-							</h4>
+						<div class="col-sm-6" style="text-align:center;" >
+							<span id="paymentChooseText" style="font-family: Avenir next, sans-serif;"><spring:message code="label.contus.paymentMethod" />
+							</span>
 			
 						</div>
 						</div>
-						<div class="row"><br></div>
+						<br><br>
 		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
-				<hr>
-			</div>
-
-		</div>
-		<div class="row" style="margin-bottom: -17px;margin-top: -13px;">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-2">
-				<div class="radio">
-					<label><input type="radio" name="paymentMethod" style="transform: scale(1.5);" value="klarna" checked></label>
-				</div>
-				
-				</div>
-				<div class="col-sm-2" style="margin-bottom: 8px;margin-top: 8px;">
-					<img src="resources/klarna.jpg"  style="width: 80px;height: 27px;"/> 
+					<div class="col-sm-2"></div>
+					<div class="col-sm-9">
+						<hr>
 					</div>
-					<div class="col-sm-2" style="    font-family: AvenirNext;font-size: 16px;margin-top: 10px;
-					font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: 2.4px;"> 
-					<spring:message code="label.contus.klarna" />
 				</div>
+		<div class="row" style="">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-10" >
+				
+				<input type="radio" id="paymentKlarna" name="paymentMethod"
+											class="" value="klarna" > <label
+											class="role" for="paymentKlarna"></label>
+											
+				
+				<span class="" style="" id="klarnaImageDiv">
+					<img src="resources/klarnaNew1.jpg" id="klarnaImage"  style="width: 81px;height:33px;margin-left: 7%;margin-top: -3%;"/> 
+				</span>
+			<%-- 	<span class="" id="klarnaText" style=" font-family: Avenir next, sans-serif;font-size: 15px;
+					font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: 2.4px;margin-left: 11%;position: relative;bottom: 15%;"> 
+					<spring:message code="label.contus.bankAcc" />
+				</span> --%>
+			</div>
 			</div>
 		<div class="row">
 			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
+			<div class="col-sm-9">
 				<hr>
 			</div>
 		</div>
-		<div class="row" style="margin-bottom: -17px;margin-top: -13px;">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-2">
-				<div class="radio">
+		
+		<div class="row" style="">
+				<div class="col-sm-2" id="extraSpaceDiv"></div>
+				<div class="col-sm-10" >
+				<!-- <div class="radio">
 					<label><input type="radio" name="paymentMethod" value="swish" style="transform: scale(1.5);"></label>
-				</div>
+				</div> -->
+				<input type="radio" id="paymentSwish" name="paymentMethod"
+											class="" value="swish" > <label
+											class="role" for="paymentSwish" ></label>
+											
 				
-				</div>
-				<div class="col-sm-2">
-					<img src="resources/swish.png" style="width: 89px;height: 40px;"/> 
-					</div>
-					<div class="col-sm-2" style="    font-family: AvenirNext;font-size: 16px;margin-top: 10px;
-					font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: 2.4px;"> 
-					<spring:message code="label.contus.swish" />
-				</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-2"></div>
-			<div class="col-sm-8">
-				<hr>
+				<span class="" id="swishImageDiv">
+					<img src="resources/swishNew.png" id="swishImage" style="width: 80px;height: 24px;margin-left: 7%;margin-top: -2%;"/> 
+				
+				<span id="swishText" class="" style="margin-top: -5%;font-family: Avenir next, sans-serif;font-size: 15px;
+						font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: 2.4px;margin-left:10%;position: relative;bottom: 15%;"> 
+					(<spring:message code="label.contus.comingSoon" />)
+				</span>
+				
+				</span>
 			</div>
 		</div>
-		 <div class="row"><br><br></div>
-
+				<div class="row">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-9">
+						<hr>
+					</div>
+				</div>
+		 
+		 				<br><br>
 							<div class="row">
 								<div class="col-sm-2"></div>
 								
-								<!-- <div class="col-sm-2" style="font-size: smaller;"><b>Coupon Code :</b> (If any provided by company)</div> -->
 								<div class="col-sm-8">
-									<input type="text" placeholder="   Coupon Code" id="userCoupon" style="width:100%;border-radius: 
-									14px;background-color: rgba(255, 142, 34, 0.31);">
+									<input type="text" placeholder="   Code" id="userCoupon" style="width:100%;border-radius: 
+									14px;">
 									&nbsp;&nbsp;<span id="couponError" style="color:red"></span>
 								</div>		
 							</div>
-			<div class="row"><br></div>
-			
-		
+							<br>
 						<div class="row">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-5">
 									<button type="button" id="continueButton"  onclick="continueCheckout();" 
 										class="btn btn-lg vertical-center">
 										<span id="testButtonModal" 
-											style="font-family: AvenirNext; font-size: 25px; font-weight: bold; font-stretch: normal; font-style: normal; 
+											style="font-family:  Avenir next, sans-serif; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; 
 											line-height: normal; letter-spacing: 1.2px; text-align: center; color: #ffffff;">
 											<spring:message code="label.contus.continue" />
 											</span>
@@ -332,19 +418,23 @@ function continuePayment(){
 								</div>
 							</div>
 					
-						  <div class="row"><br></div>
+						  <br>
 						</div>
 						
 					<div id="paymentDiv">
-						<div class="row">
-							<div class="col-sm-1"></div>
-							<div class="col-sm-10">
-								<h3><spring:message code="label.contus.warning" />
-								<br></h3>
+						<div class="">
+							
+							<div class="">
+								<div id="warningDiv"><spring:message code="label.contus.warning" />
+								</div>
 							</div>
 						</div>
-						<div class="row" id="loaderDiv"><br></div>
-						
+						<br>
+						<div id="loaderDiv">
+							<spring:message code="label.contus.extraWarning" />
+						</div>
+					
+						<br>
 							<div class="row" class="userDataDiv">
 								<div class="col-sm-3"></div>
 								<div class="col-sm-6">
@@ -352,29 +442,54 @@ function continuePayment(){
 								
 								</div>
 							</div>
-							<div class="row" ><br></div>
+							<br><br>
 							<div class="row" class="userDataDiv">
 								<div class="col-sm-3"></div>
 								<div class="col-sm-6">
 									<input type="text" placeholder="&nbsp;&nbsp;<spring:message code="label.contus.contactEmail" />"  id="userEmail">
-								<span id="incorrectEmail" style="color:red;"></span>
+									<span id="incorrectEmail" style="color:red;margin-left: 2%;"></span>
+								</div>
+							</div>
+							<br><br>
+							<div class="row" class="userDataDiv">
+								<div class="col-sm-3"></div>
+								<div class="col-sm-6">
+									<input type="text" placeholder="&nbsp;&nbsp;<spring:message code="label.contus.contactMobile" />"  id="userMobile">
+									<span id="incorrectMobile" style="color:red;margin-left: 2%;"></span>
 								</div>
 							</div>
 						
-						<div class="row" ><br><br></div>
+						
+						<br>
+						
+						<div id="gdprDiv" style="margin-left: 11%;">
+							<label>
+							  <input id="termsCheckBox" onclick="checkCheckBox();" type='checkbox'>
+							  <span ></span>
+							</label>
+							<span id="termsDiv">
+							<spring:message code="label.contus.agreeTerms" />
+							<a href="#" style="color:black; text-decoration: underline;" onclick="openGdpr();">
+							<spring:message code="label.contus.termsAndCondition" /></a> <spring:message code="label.contus.and" /> 
+							<a href="#" style="color:black; text-decoration: underline;" onclick="openPrivacyPolicy();">
+							<spring:message code="label.contus.privacyPolicy" /> </a>
+							</span>
+						</div>
+						
+						<br><br>
 						<div class="row">
 							<div class="col-sm-4"></div>
 							<div class="col-sm-5">
-							<button type="button" id="payButton" class="btn btn-lg vertical-center"><span id="testButtonModal" 
-							 style="font-family: AvenirNext; font-size: 20px; font-weight: bold;
+							<button type="button" id="payButton" class="btn btn-lg vertical-center"><span id="testButtonModalSpan" 
+							 style="font-family:  Avenir next, sans-serif; font-size: 20px; font-weight: bold;
 	  							font-stretch: normal; font-style: normal; line-height: normal; letter-spacing: 1.2px; text-align: center; color: #ffffff;">
-	  								<spring:message code="label.contus.price" /> <span id="amountToPay">99 </span> <spring:message code="label.contus.sek" /> </span></button>
+	  								<spring:message code="label.contus.price" /> <span id="amountToPay">199 </span> <spring:message code="label.contus.sek" /> </span></button>
 							</div>
 						</div>
-						<div class="row"><br></div>
+						<br>
 					</div>
 					
-					<div id="paymentOrderDiv">
+			<div id="paymentOrderDiv">
 						
 				<textarea style="display: none" id="KCO">
 	
@@ -404,7 +519,7 @@ function continuePayment(){
 				}
 				</script>
 				<!-- END -->
-					</div>
+			</div>
 					
 					
 
@@ -520,7 +635,7 @@ label img {
 }
 
 #paymentModalHeading {
-font-family: AvenirNext;
+font-family:  Avenir next, sans-serif;
     font-size: xx-large;
     font-weight: bold;
     font-stretch: normal;
@@ -545,13 +660,296 @@ font-family: AvenirNext;
                 no-repeat;
 }
 
-#userEmail , #userName{
+#userEmail , #userName , #userMobile{
     width: 100%;
     height: 40px;
     border-radius: 14px;
-    background-color: rgba(255, 142, 34, 0.31);
+   
 }
 
+
+  #payButton {
+	border-radius: 30px;
+	width: 220px;
+	height: 50px;
+	background-color: #b2b2b2;
+	border-color: #b2b2b2;
+	border-bottom-style: hidden;
+	border-right: #b2b2b2;
+	  
+  }
+  
+
+  #continueButton{
+	border-radius: 30px;
+	width: 220px;
+	height: 50px;
+	background-color: #ff7d00;
+	border-color: #ff7d00;
+	border-bottom-style: hidden;
+	border-right: #ff7d00;
+	  
+  }
+  
+
+  @media only screen and (max-width: 600px){
+ #jumbotronFaqDiv{
+  height: 500% !important;
+ }
+ }
+ 
+ @media only screen and (max-width: 400px){
+ #jumbotronFaqDiv{
+  height: 600% !important;
+ }
+ #orangeImage{
+ height:320px !important;
+ }
+
+ 
+ }
+ 
+#lowerContusData {
+    width: 100%;
+    height: 30%;
+    font-family: Avenir next, sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 5.58px;
+    color: #525252;
+}
+
+button.active.focus, button.active:focus,
+button.focus, button:active.focus, 
+button:active:focus, button:focus {
+  outline: none;
+  box-shadow: none;
+  
+}
+
+
+#warningDiv{
+	font-family: Avenir next, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 2.4px;
+    text-align: center;
+    color: #2d2d2d;
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 4%;
+}
+
+#loaderDiv{
+ font-family: Avenir next, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.44px;
+  text-align: center;
+  color: #626262;
+  margin-right: 10%;
+    margin-left: 10%;
+}
+
+
+
+
+@media only screen and (max-width: 600px){
+
+#swishText{
+margin-left:7% !important;
+}
+
+#swishImage{
+  margin-left: 0% !important;
+}
+#extraSpaceDiv{
+    margin-top: 11%;
+}
+
+#klarnaImage{
+margin-left: 0% !important;
+    margin-top: -5% !important;
+}
+
+#payButton {
+    margin-left: 5% !important;
+}
+
+}
+
+
+/* @media only screen and (max-width: 375px){
+#klarnaImage {
+    margin-left: -8% !important;
+}
+
+#swishImage {
+    margin-left: -10% !important;
+}
+
+#swishText {
+    margin-left: 0% !important;
+}
+
+}
+ */
+@media only screen and (max-width: 441px){
+
+#klarnaImage {
+    margin-left: -8% !important;
+    margin-top: -5% !important;
+}
+
+#swishImage {
+    margin-left: -10% !important;
+        margin-top: -4% !important;
+}
+
+#swishText {
+    margin-left: 7% !important;
+}
+
+}
+
+
+
+
+@media only screen and (max-width: 353px){
+
+#swishImage {
+    margin-left: -11% !important;
+    margin-top: -6% !important;
+}
+
+#swishText{
+    font-size: 10px !important;
+}
+}
+
+label input {
+  display: none; /* Hide the default checkbox */
+}
+
+/* Style the artificial checkbox */
+label span {
+ 	height: 18px;
+    width: 18px;
+    border: solid 1px #979797;
+    display: inline-block;
+    position: relative;
+    transform: translateY(21%);
+        
+}
+
+/* Style its checked state...with a ticked icon */
+/*
+[type=checkbox]:checked + span:before {
+  content: url('resources/checkMark.png');
+  position: absolute;
+  top: -60px;
+  color:orange;
+  width: 100px;
+  zoom: 0.18;
+      left: -17px;
+    -ms-transform: scale(1.5); 
+ -moz-transform: scale(1.5); 
+ -webkit-transform: scale(1.5); 
+ -o-transform: scale(1.5);  
+}
+*/
+
+
+input[type='radio'] {
+        -webkit-appearance: none;
+        width: 21px;
+        height: 21px;
+        border-radius: 50%;
+        outline: none;
+        border: 1px solid gray;
+    }
+
+    input[type='radio']:before {
+        content: '';
+        display: block;
+        width: 70%;
+        height: 70%;
+       margin-left: 15%;
+       margin-top: 14%;
+        border-radius: 50%;
+    }
+
+
+ input[type="radio"]:checked:before {
+        background: #ff7d00;
+        
+    }
+    
+    input[type="radio"]:checked {
+      border-color: #000000;
+    }
+    
+  #paymentChooseText{
+  
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2.4px;
+    text-align: center;
+    color: #2d2d2d;
+    
+  }
+  
+  /* Style its checked state...with a ticked icon */
+[type=checkbox]:checked + span:before {
+  content: '\2713';
+  position: absolute;
+  top: -8px;
+  color:orange;
+  width: 100px;
+  zoom: 1.1;
+      left: 26px;
+   -ms-transform: scale(1.5); /* IE */
+ -moz-transform: scale(1.5); /* FF */
+ -webkit-transform: scale(1.5); /* Safari and Chrome */
+ -o-transform: scale(1.5); /* Opera */
+}
+  
+@media only screen and (max-width: 376px){
+
+#klarnaText ,#swishText{
+font-size:3vw !important;
+}
+
+}
+
+
+@media only screen and (max-width: 343px){
+
+#klarnaText ,#swishText{
+font-size:3vw !important;
+margin-left:5% !important;
+}
+
+}
+
+
+@media only screen and (max-width: 770px){
+
+#swishText{
+font-size:12px !important;
+margin-left:2% !important;
+}
+
+}
 
 </style>
 

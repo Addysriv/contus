@@ -3,6 +3,7 @@ package com.addy.contus.utility;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -20,6 +21,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
@@ -29,19 +31,19 @@ public class CreatePdfReport {
 
 	private static final Logger logger = Logger.getLogger(CreatePdfReport.class);
 
-	private static Font mainHeading = new Font(Font.FontFamily.HELVETICA, 30,Font.BOLD);
+	private static Font mainHeading = FontFactory.getFont("Avenir next, sans-serif", 30,Font.BOLD);
 
-	private static Font facetHeading = new Font(Font.FontFamily.TIMES_ROMAN, 22,Font.BOLD);
+	private static Font facetHeading = FontFactory.getFont("Avenir next, sans-serif", 22,Font.BOLD);
 
-	private static Font subFacetHeading = new Font(Font.FontFamily.TIMES_ROMAN, 16,Font.BOLD);
+	private static Font subFacetHeading = FontFactory.getFont("Avenir next, sans-serif", 16,Font.BOLD);
 
-	private static Font subFacetScore = new Font(Font.FontFamily.TIMES_ROMAN, 15,Font.NORMAL);
+	private static Font subFacetScore = FontFactory.getFont("Avenir next, sans-serif", 15,Font.NORMAL);
 
-	private static Font smallNormal = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.NORMAL);
+	private static Font smallNormal = FontFactory.getFont("Avenir next, sans-serif", 15, Font.NORMAL);
 
-	private static Font smallNormalBold = new Font(Font.FontFamily.TIMES_ROMAN, 15, Font.BOLD);
+	private static Font smallNormalBold = FontFactory.getFont("Avenir next, sans-serif", 15, Font.BOLD);
 
-	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
+	private static Font smallBold = FontFactory.getFont("Avenir next, sans-serif", 16, Font.BOLD);
 
 	public static void main(String[] args) {
 		System.out.println("Hiiiii ");
@@ -94,30 +96,31 @@ public class CreatePdfReport {
 		result.conscientiousness.totalPercentage=50.0;
 
 
-		report.createPdf("addyPdf","english",result);
+		report.createPdf("addyPdf","sv",result,"Aditya Srivastava","addysriv27@gmail.com");
 
 	}
 
-	public boolean createPdf(String orderId,String language,TestResult result)
+	public boolean createPdf(String orderId,String language,TestResult result,String userName,String email)
 	{
 		boolean isPdfCreated=true;
 
 		PdfTextData text;
-
+		/*language="en";
+		*/
 		if(language.equals("sv"))
 			text=new PdfTextDataSwedish();
 		else
 			text=new PdfTextDataEnglish();
 
-		Rectangle pdfSize = new Rectangle(1000, 10700);
+		Rectangle pdfSize = new Rectangle(1000,11100);
 
-		logger.info("Pdf creation  started");
+		logger.info("%%%%%%%%%% Pdf creation  started with language "+language);
 		try {
 			Document document = new Document(pdfSize);
 			PdfWriter writer=PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/pdfReport/resultReport"+orderId+".pdf"));
 			document.open();
 			addMetaData(document,orderId,text);
-			addTitlePage(document,orderId,text);
+			addTitlePage(document,orderId,text,userName,language,email);
 			addContent(document,orderId,text,result);
 			addFooter(document,text,writer);
 			document.close();
@@ -126,7 +129,7 @@ public class CreatePdfReport {
 		}
 
 
-		logger.info("Pdf created");
+		logger.info("%%%%%%%% Pdf created");
 
 
 		return isPdfCreated;
@@ -162,7 +165,7 @@ public class CreatePdfReport {
 		document.addCreator("Aditya Srivastava (Developer) - addysriv27@gmail.com");
 	}
 
-	private void addTitlePage(Document document,String orderId,PdfTextData text)
+	private void addTitlePage(Document document,String orderId,PdfTextData text,String userName,String language,String userEmail)
 	{
 		Image contusLogo;
 
@@ -178,7 +181,28 @@ public class CreatePdfReport {
 			preface1.setAlignment(Element.ALIGN_CENTER);
 
 			document.add(preface1);
+			
+			String userNameText="";
+			document.add(new Paragraph(" "));
+			
+			if(language.equals("sv"))
+				userNameText=PdfTextDataSwedish.entryText+userName+" skapad vid "+(new Date()).toString() +" och skickas till "+userEmail;
+			//userNameText="Denna rapport tillh�r "+userName+" skapad vid "+(new Date()).toString() +" och skickas till "+userEmail;
+				
+			else
+				userNameText="This report belongs to "+userName+" created at "+(new Date()).toString() +" and sent to "+userEmail;
+			
+			document.add(new Paragraph(" "));
+			
+			Paragraph preface2 = new Paragraph(userNameText, FontFactory.getFont("Avenir next, sans-serif", 16,Font.BOLD));
 
+			preface2.setAlignment(Element.ALIGN_LEFT);
+			preface2.setIndentationLeft(104);
+			preface2.setIndentationRight(104);
+
+			document.add(preface2);
+			//document.add(new Paragraph(" "));
+			
 			Paragraph resultStatements = new Paragraph();
 			resultStatements.setIndentationLeft(5);
 

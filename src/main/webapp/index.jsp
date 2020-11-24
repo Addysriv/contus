@@ -4,8 +4,6 @@
 <html>
 <head>
 <!-- <meta charset="ISO-8859-1"> -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -1004,6 +1002,35 @@ button:active:focus, button:focus {
   text-align: center;
   color: #ffffff;
 }
+
+
+@media only screen and (max-width: 600px){
+
+
+#footerLogoDiv .jumbotron{
+height:100% !important;
+} 
+
+#continueButton{
+margin-left:-24%;
+}
+
+#testStartButton{
+margin-left: -4% !important;
+}
+
+#testStartButtonAbove{
+
+margin-left: 10% !important;
+}
+
+#handImage{
+margin-top: 10%;
+}
+
+}
+
+
 
 
 </style>

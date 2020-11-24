@@ -218,17 +218,19 @@ public class ContusDao {
 	public String getEmail(String orderId)
 	{
 		String emailId="";
+		String name="";
 		Connection conn=getConnection();
-		logger.info("$$$$$$$$$$$$$$$$$$$$$");
+		logger.info("$$$$$$$$$$$$$$$$$$$$$ inside getemail() "+orderId);
 		try(Statement stmt=conn.createStatement())
 		{
-			logger.info("##########################");
-			ResultSet rs=stmt.executeQuery("select email from customers where order_id='"+orderId+"'");
+			logger.info("########################## Query -> select email from customers where order_id='"+orderId+"'");
+			ResultSet rs=stmt.executeQuery("select * from customers where order_id='"+orderId+"'");
 			if(rs!=null)
 			{
 				while(rs.next()) {
-				emailId=rs.getString(1);
-				logger.info("***"+emailId);
+				name=rs.getString(2);
+				emailId=rs.getString(3);
+				logger.info("***EmailId - "+emailId+"  Name - "+name);
 				}
 				
 			}
@@ -237,9 +239,8 @@ public class ContusDao {
 				return null;
 					
 			}
-			logger.info("*********");
 
-			logger.info("successfull mobile number retrieved");
+			logger.info("successfull email id retrieved");
 			closeConnection();
 		}
 		catch(SQLException sqlExc)
@@ -252,14 +253,14 @@ public class ContusDao {
 		}
 		catch(Exception ex)
 		{
-			logger.error("%%%%%%%%%%%% SQL error occured  %%%%%%%%%%%%%%");
+			logger.error("%%%%%%%%%%%% Error occured in getEmail  %%%%%%%%%%%%%%");
 			logger.error("/n");
 			logger.error("Error : ",ex);
 			closeConnection();
 			return null;
 		}
 		
-		return emailId;
+		return emailId+"-"+name;
 		
 	}
 

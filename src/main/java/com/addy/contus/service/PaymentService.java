@@ -12,7 +12,7 @@ public interface PaymentService {
 	
 	public String createOrderForKlarna(HttpServletRequest request,String language);
 	
-	public String confirmOrder(String orderId,String couponCode,String couponAmount,String couponNumb);
+	public String confirmOrder(String orderId,String couponCode,String couponAmount,String couponNumb,HttpServletRequest request);
 	
 	public Coupon checkValidCoupon(String code);
 	

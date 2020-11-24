@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/addy/contus/entity/PdfTextDataSwedish.java=UTF-8
+encoding//src/main/java/com/addy/contus/utility/ContusThreadUtility.java=UTF-8
+encoding//src/main/java/com/addy/contus/utility/CreatePdfReport.java=UTF-8
+encoding//src/main/java/com/addy/contus/utility/EmailSenderUtility.java=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/paymentModal.jsp=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.addy.contus.dao.ContusDao;
@@ -86,16 +87,46 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	EmailSenderUtility emailUtility;
 	
+	@Value("${klarnaPostUrl}")
+	String klarnaUrl;
+	
+	@Value("${klarnaCurrency}")
+	String klarnaCurrentCurrency;
+	
+	@Value("${klarnaCountry}")
+	String klarnaCurrentCountry;
+	
+	@Value("${klarnaUser}")
+	String klarnaUserName;
+	
+	@Value("${klarnaPassword}")
+	String klarnaUserPassword;
+	
+	@Value("${klarnaTermsUrl}")
+	String termsUrl;
+	
+	@Value("${klarnaCheckOutUrl}")
+	String checkOutUrl;
+	
+	@Value("${klarnaConfirmationUrl}")
+	String confirmationUrl;
+	
+	@Value("${klarnaPushUrl}")
+	String pushUrl;
+	
+	@Value("${klarnaOrderMngmntUrl}")
+	String klarnaOrderUrl;
+	
 	public String createOrderForKlarna(HttpServletRequest request,String language) {
 		
 		logger.info("!!!!!!!!!!!!!!!! Inside klarna create method !!!!!!!! \n");
 		
 		String html="";
 		//String price="9900";
-		String country="GB";
-		String currency="GBP";
+		String country=klarnaCurrentCountry;
+		String currency=klarnaCurrentCurrency;
 		String locale="en-GB";
-		String url_address="https://api.playground.klarna.com/checkout/v3/orders";
+		String url_address=klarnaUrl;
 		
 		if(language.equals("sv"))
 		{
@@ -105,7 +136,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 		String amnt=(String) request.getSession().getAttribute("couponAmount");
 		if(amnt!=null ) {
-			System.out.println("amount  - "+amnt);
+			logger.info("amount  - "+amnt);
 			if(amnt.length()==2)
 				amnt=amnt+"00";
 			
@@ -114,16 +145,16 @@ public class PaymentServiceImpl implements PaymentService {
 			amnt="9900";
 		
 		
-		String user="PK27244_d4d350e6e457";
-		String password="9TWkHZ6w09zAxHCL";
+		String user=klarnaUserName;
+		String password=klarnaUserPassword;
 		
 		String jsonRequest="{\"purchase_country\":\""+country+"\",\"purchase_currency\":\""+currency+"\",\"locale\":\""+locale+"\",\"order_amount\":"+amnt+",\"order_tax_amount\""
 							+ ":0,\"order_lines\":[{\"type\":\"digital\",\"reference\":\"contus-test\",\"name\":\"Personality Test\",\"quantity\":1,\"quantity_unit\""
 							+ ":\"pcs\",\"unit_price\":"+amnt+",\"tax_rate\":0,\"total_amount\":"+amnt+",\"total_discount_amount\":0,\"total_tax_amount\":0}],\"merchant_urls\""
-							+ ":{\"terms\":\"http://localhost:8080/Contus/choice\""
-							+ ",\"checkout\":\"http://localhost:8080/Contus\",\""
-							+ "confirmation\":\"http://localhost:8080/Contus/choice\",\""
-							+ "push\":\"http://localhost:8080/Contus/push\"}}";
+							+ ":{\"terms\":\""+termsUrl+"\""
+							+ ",\"checkout\":\""+checkOutUrl+"\",\""
+							+ "confirmation\":\""+confirmationUrl+"\",\""
+							+ "push\":\""+pushUrl+"\"}}";
 		
 		logger.info(jsonRequest);
 		logger.info(" \n \n ");
@@ -138,17 +169,17 @@ public class PaymentServiceImpl implements PaymentService {
 		        conn.setDoInput(true);
 		        conn.setRequestMethod("POST");
 		        String auth = user + ":" + password;
-		        System.out.println("auth ----- "+auth);
+		        logger.info("auth ----- "+auth);
 		        byte[] encodedAuth = Base64.getUrlEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
 		        String authHeaderValue = "Basic " + new String(encodedAuth);
-		        System.out.println("authHeaderValue ----- "+authHeaderValue);
+		        logger.info("authHeaderValue ----- "+authHeaderValue);
 		        conn.setRequestProperty("Authorization", authHeaderValue);
 		       
 		        OutputStream os = conn.getOutputStream();
 		        os.write(jsonRequest.getBytes("UTF-8"));
 		        os.close(); 
-		        System.out.println(conn.getResponseMessage());
-		        System.out.println(conn.getResponseCode());
+		        logger.info(conn.getResponseMessage());
+		        logger.info(conn.getResponseCode());
 		        // read the response
 		        BufferedReader br;
 		        boolean valid=false;
@@ -164,10 +195,10 @@ public class PaymentServiceImpl implements PaymentService {
 		            String error="";
 		            String erroMsg="";
 		            while ((error = br.readLine()) != null) {
-			        	System.out.println("------------------------------");
+			        	logger.info("------------------------------");
 			        	
 			        	erroMsg=error+erroMsg;
-			        	System.out.println(error);
+			        	logger.info(error);
 			          
 			        }
 		            logger.error(erroMsg);
@@ -199,7 +230,7 @@ public class PaymentServiceImpl implements PaymentService {
 		         
 		         logger.info("$$$$$$ oder id = "+orderId);
 		         
-		        System.out.println(orderId);
+		        logger.info(orderId);
 		       
 		        
 		        }
@@ -210,7 +241,7 @@ public class PaymentServiceImpl implements PaymentService {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			System.out.println(e.getCause());
+			logger.info(e.getCause());
 			logger.error("%%%%%%%%%%%% error occured %%%%%%%");
 			logger.error("\n");
 			logger.error("Error : ",e);
@@ -220,12 +251,12 @@ public class PaymentServiceImpl implements PaymentService {
 		
 	}
 	
-	public String confirmOrder(String orderId,String couponCode,String couponAmount,String couponNumb) {
+	public String confirmOrder(String orderId,String couponCode,String couponAmount,String couponNumb,HttpServletRequest request) {
 		
-		String url_address="https://api.playground.klarna.com/checkout/v3/orders/"+orderId;
-		String user="PK27244_d4d350e6e457";
-		String password="9TWkHZ6w09zAxHCL";
-		System.out.println(url_address);
+		String url_address=klarnaUrl+"/"+orderId;
+		String user=klarnaUserName;
+		String password=klarnaUserPassword;
+		logger.info(url_address);
 		try {
 			URL url = new URL(url_address);
 			
@@ -236,14 +267,14 @@ public class PaymentServiceImpl implements PaymentService {
 		        conn.setDoInput(true);
 		        conn.setRequestMethod("GET");
 		        String auth = user + ":" + password;
-		        System.out.println("auth ----- "+auth);
+		        logger.info("auth ----- "+auth);
 		        byte[] encodedAuth = Base64.getUrlEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
 		        String authHeaderValue = "Basic " + new String(encodedAuth);
-		        System.out.println("authHeaderValue ----- "+authHeaderValue);
+		        logger.info("authHeaderValue ----- "+authHeaderValue);
 		        conn.setRequestProperty("Authorization", authHeaderValue);
 		       
-		        System.out.println(conn.getResponseMessage());
-		        System.out.println(conn.getResponseCode());
+		        logger.info(conn.getResponseMessage());
+		        logger.info(conn.getResponseCode());
 		        // read the response
 		        BufferedReader br;
 		        
@@ -258,10 +289,10 @@ public class PaymentServiceImpl implements PaymentService {
 		            String error="";
 		            String erroMsg="";
 		            while ((error = br.readLine()) != null) {
-			        	System.out.println("------------------------------");
+			        	logger.info("------------------------------");
 			        	
 			        	erroMsg=error+erroMsg;
-			        	System.out.println(error);
+			        	logger.info(error);
 			          
 			        }
 		            logger.error(erroMsg);
@@ -271,13 +302,13 @@ public class PaymentServiceImpl implements PaymentService {
 		        
 		        String output;
 		        String responseStr="";
-		        System.out.println();
-		        System.out.println("***************************");
+		        //logger.info();
+		        logger.info("***************************");
 		        while ((output = br.readLine()) != null) {
-		        	System.out.println("------------------------------");
+		        	logger.info("------------------------------");
 		        	
 		        	responseStr=responseStr+output;
-		        	System.out.println(output);
+		        	logger.info(output);
 		          
 		        }
 		        
@@ -291,21 +322,23 @@ public class PaymentServiceImpl implements PaymentService {
 		        cust.setCustName(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("given_name").getAsString()+" "
 		        				+root.getAsJsonObject().get("billing_address").getAsJsonObject().get("family_name").getAsString());
 		        cust.setEmail(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("email").getAsString());
-		        cust.setAddress(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("street_address").getAsString() +" addrerss 2 - "
+		       /* cust.setAddress(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("street_address").getAsString() +" addrerss 2 - "
 		        				+root.getAsJsonObject().get("billing_address").getAsJsonObject().get("street_address2").getAsString()+ " postal code : "+
-		        				 root.getAsJsonObject().get("billing_address").getAsJsonObject().get("postal_code").getAsString());
-		        cust.setMobile(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("phone").getAsString());
+		        				 root.getAsJsonObject().get("billing_address").getAsJsonObject().get("postal_code").getAsString());*/
+		       // cust.setMobile(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("phone").getAsString());
 		        cust.setPaymentMethod("klarna");
 		        cust.setOrderId(root.getAsJsonObject().get("order_id").getAsString());
 		        cust.setAmountPaid(root.getAsJsonObject().get("order_amount").getAsString());
 		        cust.setOrderStatus(root.getAsJsonObject().get("status").getAsString());
 		        cust.setCouponUsed(couponCode);
 		        
-		        
+		        request.getSession().setAttribute("emailId",cust.getEmail());
+				request.getSession().setAttribute("userName",cust.getCustName());
+				
 		        logger.info(status);
-		        System.out.println();
+		        //logger.info();
 		        
-		        System.out.println("No errors");
+		        logger.info("No errors");
 		        if(status.equalsIgnoreCase("checkout_complete"))
 		        {
 		        	saveCustomer(cust);
@@ -323,7 +356,7 @@ public class PaymentServiceImpl implements PaymentService {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			System.out.println(e.getCause());
+			logger.info(e.getCause());
 			logger.error("%%%%%%%%%%%% error occured %%%%%%%");
 			logger.error("\n");
 			logger.error("Error : ",e);
@@ -369,9 +402,9 @@ public class PaymentServiceImpl implements PaymentService {
 	{
 		logger.info("!!!!!!!!!!!! Ready to capture order id "+orderId);
 		String msg="success";
-		String baseUrl="https://api.playground.klarna.com/ordermanagement/v1/orders/"+orderId+"/captures";
-		String user="PK27244_d4d350e6e457";
-		String password="9TWkHZ6w09zAxHCL";
+		String baseUrl=klarnaOrderUrl+"/"+orderId+"/captures";
+		String user=klarnaUserName;
+		String password=klarnaUserPassword;
 		
 		String jsonRequest="{\"captured_amount\":" +amount+"}";
 		
@@ -389,10 +422,10 @@ public class PaymentServiceImpl implements PaymentService {
 		        conn.setDoInput(true);
 		        conn.setRequestMethod("POST");
 		        String auth = user + ":" + password;
-		        System.out.println("auth ----- "+auth);
+		        logger.info("auth ----- "+auth);
 		        byte[] encodedAuth = Base64.getUrlEncoder().encode(auth.getBytes(StandardCharsets.UTF_8));
 		        String authHeaderValue = "Basic " + new String(encodedAuth);
-		        System.out.println("authHeaderValue ----- "+authHeaderValue);
+		        logger.info("authHeaderValue ----- "+authHeaderValue);
 		        conn.setRequestProperty("Authorization", authHeaderValue);
 		       
 		        OutputStream os = conn.getOutputStream();
@@ -411,10 +444,11 @@ public class PaymentServiceImpl implements PaymentService {
 		            String error="";
 		            String erroMsg="";
 		            while ((error = br.readLine()) != null) {
-			        	System.out.println("------------------------------");
+			        	logger.info("------------------------------");
 			        	
 			        	erroMsg=error+erroMsg;
-			        	System.out.println(error);
+			        	logger.info(error);
+			        	msg=erroMsg;
 			          
 			        }
 		            logger.error(erroMsg);
@@ -431,7 +465,7 @@ public class PaymentServiceImpl implements PaymentService {
 			logger.error("%%%%%%%%%%%% error end %%%%%%%");
 		}
 		
-		logger.info(" captured msg - "+msg);
+		logger.info(" Captured msg - "+msg);
 		return msg;
 		
 		
@@ -485,13 +519,13 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		neuroticism.n2Anger=answers[6]+answers[36]+answers[66]+(6-answers[96]);
 		
-		neuroticism.n3Depression=answers[11]+answers[41]+answers[71]+answers[101];
+		neuroticism.n3Depression=answers[11]+answers[41]+answers[71]+(6-answers[101]);
 		
-		neuroticism.n4SelfConsciousness=answers[16]+answers[46]+(6-answers[76])+(6-answers[106]);
+		neuroticism.n4SelfConsciousness=answers[16]+answers[46]+answers[76]+(6-answers[106]);
 		
-		neuroticism.n5Immoderation=answers[21]+answers[51]+(6-answers[81])+(6-answers[111]);
+		neuroticism.n5Immoderation=answers[21]+(6-answers[51])+(6-answers[81])+(6-answers[111]);
 		
-		neuroticism.n6Vulnerability=answers[26]+answers[56]+(6-answers[86])+(6-answers[116]);
+		neuroticism.n6Vulnerability=answers[26]+answers[56]+answers[86]+(6-answers[116]);
 		
 		Double totalScoreNeur=Double.valueOf(neuroticism.n1Anxiety+neuroticism.n2Anger+neuroticism.n3Depression+neuroticism.n4SelfConsciousness+neuroticism.n5Immoderation+neuroticism.n6Vulnerability);
 		
@@ -506,13 +540,13 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		BigFiveExtraversion extraversion=new BigFiveExtraversion();
 		
-		extraversion.e1Friendliness=answers[2]+answers[32]+answers[62]+answers[92];
+		extraversion.e1Friendliness=answers[2]+answers[32]+(6-answers[62])+(6-answers[92]);
 		
 		extraversion.e2Gregariousness=answers[7]+answers[37]+(6-answers[67])+(6-answers[97]);
 		
 		extraversion.e3Assertiveness=answers[12]+answers[42]+answers[72]+(6-answers[102]);
 		
-		extraversion.e4ActivityLevel=answers[17]+answers[47]+answers[77]+answers[107];
+		extraversion.e4ActivityLevel=answers[17]+answers[47]+answers[77]+(6-answers[107]);
 		
 		extraversion.e5ExcitementSeeking=answers[22]+answers[52]+answers[82]+answers[112];
 		
@@ -534,15 +568,15 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		openness.o1Imagination=answers[3]+answers[33]+answers[63]+answers[93];
 
-		openness.o2ArtisticInterests=answers[8]+(6-answers[38])+(6-answers[68])+(6-answers[98]);
+		openness.o2ArtisticInterests=answers[8]+answers[38]+(6-answers[68])+(6-answers[98]);
 		
 		openness.o3Emotionality=answers[13]+answers[43]+(6-answers[73])+(6-answers[103]);
 		
-		openness.o4Adventurousness=(6-answers[18])+(6-answers[48])+(6-answers[78])+(6-answers[108]);
+		openness.o4Adventurousness=answers[18]+(6-answers[48])+(6-answers[78])+(6-answers[108]);
 		
-		openness.o5Intellect=(6-answers[23])+(6-answers[53])+(6-answers[83])+(6-answers[113]);
+		openness.o5Intellect=answers[23]+(6-answers[53])+(6-answers[83])+(6-answers[113]);
 		
-		openness.o6Liberalism=answers[28]+(6-answers[58])+(6-answers[88])+(6-answers[118]);
+		openness.o6Liberalism=answers[28]+answers[58]+(6-answers[88])+(6-answers[118]);
 		
 		Double totalScoreOpenes=Double.valueOf(openness.o1Imagination+openness.o2ArtisticInterests+openness.o3Emotionality+openness.o4Adventurousness+
 				openness.o5Intellect+openness.o6Liberalism);
@@ -562,13 +596,13 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		agreeableness.a2Morality=(6-answers[9])+(6-answers[39])+(6-answers[69])+(6-answers[99]);
 		
-		agreeableness.a3Altruism=answers[14]+answers[44]+answers[74]+(6-answers[104]);
+		agreeableness.a3Altruism=answers[14]+answers[44]+(6-answers[74])+(6-answers[104]);
 		
 		agreeableness.a4Cooperation=(6-answers[19])+(6-answers[49])+(6-answers[79])+(6-answers[109]);
 		
 		agreeableness.a5Modesty=(6-answers[24])+(6-answers[54])+(6-answers[84])+(6-answers[114]);
 		
-		agreeableness.a6Sympathy=answers[29]+answers[59]+answers[89]+(6-answers[119]);
+		agreeableness.a6Sympathy=answers[29]+answers[59]+(6-answers[89])+(6-answers[119]);
 		
 		Double totalScoreAgree=Double.valueOf(agreeableness.a1Trust+agreeableness.a2Morality+agreeableness.a3Altruism+agreeableness.a4Cooperation+
 					agreeableness.a5Modesty+agreeableness.a6Sympathy);
@@ -586,13 +620,13 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		conscientiousness.c1SelfEfficacy=answers[5]+answers[35]+answers[65]+answers[95];
 		
-		conscientiousness.c2Orderliness=answers[10]+answers[40]+(6-answers[70])+(6-answers[100]);
+		conscientiousness.c2Orderliness=answers[10]+(6-answers[40])+(6-answers[70])+(6-answers[100]);
 		
 		conscientiousness.c3Dutifulness=answers[15]+answers[45]+(6-answers[75])+(6-answers[105]);
 		
-		conscientiousness.c4AchievementStriving=answers[20]+answers[50]+answers[80]+(6-answers[110]);
+		conscientiousness.c4AchievementStriving=answers[20]+answers[50]+(6-answers[80])+(6-answers[110]);
 		
-		conscientiousness.c5SelfDiscipline=answers[25]+(6-answers[55])+(6-answers[85])+(6-answers[115]);
+		conscientiousness.c5SelfDiscipline=answers[25]+answers[55]+(6-answers[85])+(6-answers[115]);
 		
 		conscientiousness.c6Cautiousness=(6-answers[30])+(6-answers[60])+(6-answers[90])+(6-answers[120]); 
 
@@ -621,7 +655,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		 try(Statement stmt=con.createStatement())
          {
-        	 System.out.println(stmt);
+        	 logger.info(stmt);
 				logger.info(stmt);
 				
 				
@@ -637,7 +671,7 @@ public class PaymentServiceImpl implements PaymentService {
 					coupon.setRedeemedNumb(rs.getInt(5));
 					coupon.setAmount(rs.getString(7));
 					coupon.setDateTime(rs.getString(9));
-					System.out.println("Coupon code "+coupon.getCouponCode()+coupon.getId());
+					logger.info("Coupon code "+coupon.getCouponCode()+coupon.getId());
 					couponList.add(coupon);
 				}
 				

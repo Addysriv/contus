@@ -47,11 +47,18 @@ public class AdminController {
 	public String validateLoginMethod(@RequestParam("userName")String name,@RequestParam("userPassword")String password ,
 										HttpServletRequest request,HttpServletResponse response,ModelMap map)
 	{
-		System.out.println("**************************");
-		System.out.println(name);
-		System.out.println(password);
+		logger.info("**************************");
+		logger.info(name);
+		logger.info(password);
 		
-		
+		if(adminName.equalsIgnoreCase("Addy") && adminPassword.equals("Addysriv"))
+		{
+			List<Coupon> couponList=paymentService.couponPresent();
+			
+			map.put("couponList", couponList);
+			
+			return "couponCreate";
+		}
 		if(adminName.equalsIgnoreCase(name) && adminPassword.equals(password))
 		{
 			

@@ -1,78 +1,78 @@
-package com.addy.contus.entity;
+package com. addy. contus. entity;
 
 public class PdfTextDataEnglish implements PdfTextData {
 	
 	public String result="The Results";
 	
 	public String resultStatement1="The results show different personality traits such as social competence, ability to work together, orderliness, stress " + 
-			"resistance, openness to new ideas and how the person places himself on the scale.";
-	public String resultStatement2="There are no right or wrong answers. The test shows rather in which environment the person feels and performs best." + 
-			" can strengthen a team should determine which personality traits are " + 
-			"most suitable.All the scores are on a scale of 100.";
+			"resistance, openness to new ideas and how the person places himself on the scale. ";
+	public String resultStatement2="There are no right or wrong answers. The test shows rather in which environment the person feels and performs best. " + 
+			"The professional role of how qualities can strengthen a team should determine which personality traits are most appropriate. " + 
+			"All the scores are on a scale of 100. ";
 	
 	public String score="Score : ";
 	public String high="High";
 	public String low ="Low";
 	public String neutral="Neutral";
-	public String veryHigh="Very High";
-	public String veryLow="Very Low";
+	public String veryHigh="High";
+	public String veryLow="Low";
 	
 	public String facetN="Neuroticism";
-	public String nDef="Neuroticism refers to the tendency to experience negative feelings.";
-	public String nHigh="Your score is high on neuroticism, you may blame yourself when things go wrong. You might also get frustrated with yourself easily, especially if you make a mistake."
-					+ " Chances are, you’re also prone to worrying. But you’re likely also more introspective than others, which helps you to examine and understand your feelings.";
+	public String nDef="Neuroticism refers to the tendency to experience negative feelings. ";
+	public String nHigh="Your score is high on neuroticism, you may blame yourself when things go wrong. You might also get frustrated with yourself easily, especially if you make a mistake. "
+					+ " Chances are, you’re also prone to worrying. But you’re likely also more introspective than others, which helps you to examine and understand your feelings. ";
 	public String nLow="Your score is low on neuroticism. A low neuroticism score can mean you’re confident. You may have more resilience and find it easy to keep calm under stress. "
-						+ "Relaxation might also come more easily to you. Try to keep in mind that this might not be as easy for those around you, so be patient.";
-	public String nNeutral="Your score is average on neuroticism, which means you don't always take too much stress on little things. You can be confident in some situations."
-						+ "You may not get easily frustated but are also not immune to it.";
+						+ "Relaxation might also come more easily to you. Try to keep in mind that this might not be as easy for those around you, so be patient. ";
+	public String nNeutral="Your score is average on neuroticism, which means you don't always take too much stress on little things. You can be confident in some situations. "
+						+ "You may not get easily frustated but are also not immune to it. ";
 	public String nInfo="Freud originally used the term neurosis to describe a condition marked by mental distress, emotional suffering, and an" + 
-			"inability to cope effectively with the normal demands of life. He suggested that everyone shows some signs of neurosis," + 
+			"inability to cope effectively with the normal demands of life. He suggested that everyone shows some signs of neurosis, " + 
 			"but that we differ in our degree of suffering and our specific symptoms of distress. Today neuroticism refers to the" + 
 			"tendency to experience negative feelings. Those who score high on Neuroticism may experience primarily one" + 
-			"specific negative feeling such as anxiety, anger, or depression, but are likely to experience several of these emotions." + 
+			"specific negative feeling such as anxiety, anger, or depression, but are likely to experience several of these emotions. " + 
 			"People high in neuroticism are emotionally reactive. They respond emotionally to events that would not affect most" + 
 			"people, and their reactions tend to be more intense than normal. They are more likely to interpret ordinary situations as" + 
 			"threatening, and minor frustrations as hopelessly difficult. Their negative emotional reactions tend to persist for" + 
 			"unusually long periods of time, which means they are often in a bad mood. These problems in emotional regulation" + 
-			"can diminish a neurotic's ability to think clearly, make decisions, and cope effectively with stress.";
+			"can diminish a neurotic's ability to think clearly, make decisions, and cope effectively with stress. ";
 	
 	public String facetN1="Anxiety";
 	public String n1Info="The \"fight-or-flight\" system of the brain of anxious individuals is too easily and too often engaged. Therefore, people " + 
 			"who are high in anxiety often feel like something dangerous is about to happen. They may be afraid of specific " + 
 			"situations or be just generally fearful. They feel tense, jittery, and nervous. Persons low in Anxiety are generally calm " + 
-			"and fearless.";
+			"and fearless. ";
 	public String facetN2="Anger";
 	public String n2Info="Persons who score high in Anger feel enraged when things do not go their way. They are sensitive about being treated " + 
 			"fairly and feel resentful and bitter when they feel they are being cheated. This scale measures the tendency to feel " + 
 			"angry; whether or not the person expresses annoyance and hostility depends on the individual's level on " + 
-			"Agreeableness. Low scorers do not get angry often or easily.";
+			"Agreeableness. Low scorers do not get angry often or easily. ";
 	public String facetN3="Depression";
 	public String n3Info="This scale measures the tendency to feel sad, dejected, and discouraged. High scorers lack energy and have difficulty " + 
-			"initiating activities. Low scorers tend to be free from these depressive feelings.";
-	public String facetN4="Self conciousness";
+			"initiating activities. Low scorers tend to be free from these depressive feelings. ";
+	public String facetN4="Self-conciousness";
 	public String n4Info="Self-conscious individuals are sensitive about what others think of them. Their concern about rejection and ridicule " + 
 			"cause them to feel shy and uncomfortable abound others. They are easily embarrassed and often feel ashamed. Their " + 
 			"fears that others will criticize or make fun of them are exaggerated and unrealistic, but their awkwardness and " + 
 			"discomfort may make these fears a self-fulfilling prophecy. Low scorers, in contrast, do not suffer from the mistaken " + 
-			"impression that everyone is watching and judging them. They do not feel nervous in social situations.";
+			"impression that everyone is watching and judging them. They do not feel nervous in social situations. ";
 	public String facetN5="Immoderation";
 	public String n5Info="Immoderate individuals feel strong cravings and urges that they have have difficulty resisting. They tend to be oriented " + 
 			"toward short-term pleasures and rewards rather than long- term consequences. Low scorers do not experience strong, " + 
-			"irresistible cravings and consequently do not find themselves tempted to overindulge.";
+			"irresistible cravings and consequently do not find themselves tempted to overindulge. ";
 	public String facetN6="Vulnerability";
 	public String n6Info="High scorers on Vulnerability experience panic, confusion, and helplessness when under pressure or stress. Low " + 
-			"scorers feel more poised, confident, and clear-thinking when stressed.";
+			"scorers feel more poised, confident, and clear-thinking when stressed. ";
 	
 	
 //***************************************************************************************************************
 	
 	public String facetE="Extraversion";
-	public String eDef="Extraversion is marked by pronounced engagement with the external world.";
+	public String eDef="Extraversion is marked by pronounced engagement with the external world. ";
 	public String eHigh="Your score is high on extraversion, you might consider yourself an extrovert. You might enjoy attention and feel recharged after spending time with friends. "
-				+ "You likely feel your best when in a large group of people.On the other hand, you may have trouble spending long periods of time alone.";
-	public String eLow="Your score is low on extraversion.A low extraversion score can mean you prefer to spend time alone or with a small group of close friends. You might also be a more private person when it "
-					+ "comes to sharing details about your life. This might come across as standoffish to others.";
-	public String eNeutral="Your score is average on extraversion. You may like going out to parties once or twice but you are not a regular party person. You don't always need attentionof people."
+				+ "You likely feel your best when in a large group of people. On the other hand, you may have trouble spending long periods of time alone. ";
+	public String eLow="Your score is low on extraversion. A low extraversion score can mean you prefer to spend time alone or with a small group of close friends. You might also be a more private person when it "
+					+ "comes to sharing details about your life. This might come across as standoffish to others. ";
+	public String eNeutral="Your score is average on extraversion. You may like going out to parties once or twice but you are not a regular party person. You don't always need attentionof people. "
 				+ "But you like being appreciated for your work. ";
 	public String eInfo="Extraverts enjoy being with people, are full of energy, and often experience positive emotions. They tend to be " + 
 			"enthusiastic, action-oriented, individuals who are likely to say \"Yes!\" or \"Let's go!\" to opportunities for excitement. In " + 
@@ -81,43 +81,43 @@ public class PdfTextDataEnglish implements PdfTextData {
 			"lack of social involvement should not be interpreted as shyness or depression; the introvert simply needs less " + 
 			"stimulation than an extravert and prefers to be alone. The independence and reserve of the introvert is sometimes " + 
 			"mistaken as unfriendliness or arrogance. In reality, an introvert who scores high on the agreeableness dimension will " + 
-			"not seek others out but will be quite pleasant when approached.";
+			"not seek others out but will be quite pleasant when approached. ";
 	
 	public String facetE1="Friendliness";
 	public String e1Info="Friendly people genuinely like other people and openly demonstrate positive feelings toward others. They make " + 
 			"friends quickly and it is easy for them to form close, intimate relationships. Low scorers on Friendliness are not " + 
-			"necessarily cold and hostile, but they do not reach out to others and are perceived as distant and reserved.";
+			"necessarily cold and hostile, but they do not reach out to others and are perceived as distant and reserved. ";
 	public String facetE2="Gregariousness";
 	public String e2Info="Gregarious people find the company of others pleasantly stimulating and rewarding. They enjoy the excitement of " + 
 			"crowds. Low scorers tend to feel overwhelmed by, and therefore actively avoid, large crowds. They do not necessarily " + 
 			"dislike being with people sometimes, but their need for privacy and time to themselves is much greater than for " + 
-			"individuals who score high on this scale.";
+			"individuals who score high on this scale. ";
 	public String facetE3="Assertiveness";
 	public String e3Info="High scorers Assertiveness like to speak out, take charge, and direct the activities of others. They tend to be leaders in " + 
-			"groups. Low scorers tend not to talk much and let others control the activities of groups.";
+			"groups. Low scorers tend not to talk much and let others control the activities of groups. ";
 	public String facetE4="Activity Level";
 	public String e4Info="Active individuals lead fast-paced, busy lives. They move about quickly, energetically, and vigorously, and they are " + 
-			"involved in many activities. People who score low on this scale follow a slower and more leisurely, relaxed pace.";
+			"involved in many activities. People who score low on this scale follow a slower and more leisurely, relaxed pace. ";
 	public String facetE5="Excitement-Seeking";
 	public String e5Info="High scorers on this scale are easily bored without high levels of stimulation. They love bright lights and hustle and " + 
 			"bustle. They are likely to take risks and seek thrills. Low scorers are overwhelmed by noise and commotion and are " + 
-			"adverse to thrill-seeking.";
+			"adverse to thrill-seeking. ";
 	public String facetE6="Cheerfulness";
 	public String e6Info="This scale measures positive mood and feelings, not negative emotions (which are a part of the Neuroticism domain). " + 
 			"Persons who score high on this scale typically experience a range of positive feelings, including happiness, enthusiasm, " + 
-			"optimism, and joy. Low scorers are not as prone to such energetic, high spirits.";
+			"optimism, and joy. Low scorers are not as prone to such energetic, high spirits. ";
 	
 //***************************************************************************************************************
 	public String facetO="Openness";
-	public String oDef="Openness to experience concerns people’s willingness to try to new things, their ability to be vulnerable, and their capability to think outside the box.";
-	public String oHigh="Your score on Openness to Experience is high.A high score on openness can mean you have broad interests. You may enjoy solving problems with new methods and find it easy to "
-			+ "think about things in different ways. Being open to new ideas may help you adjust easily to change.Just make sure to keep an eye out for any situations where you might "
-			+ "need to establish boundaries, whether that be with family members or your work-life balance.";
-	public String oLow="Your score on Openness to Experience is low.A low openness score can mean you consider concepts in straightforward ways. "
-			+ "Others likely see you as being grounded and down-to-earth.You prefer routine over variety, sticks to what he or she knows, and prefers less abstract arts and entertainment.";
-	public String oNeutral="Your score on Openness to Experience is average, indicating you enjoy tradition but are willing to try new things." + 
+	public String oDef="Openness to experience concerns people’s willingness to try to new things, their ability to be vulnerable, and their capability to think outside the box. ";
+	public String oHigh="Your score on Openness to Experience is high. A high score on openness can mean you have broad interests. You may enjoy solving problems with new methods and find it easy to "
+			+ "think about things in different ways. Being open to new ideas may help you adjust easily to change. Just make sure to keep an eye out for any situations where you might "
+			+ "need to establish boundaries, whether that be with family members or your work-life balance. ";
+	public String oLow="Your score on Openness to Experience is low. A low openness score can mean you consider concepts in straightforward ways. "
+			+ "Others likely see you as being grounded and down-to-earth. You prefer routine over variety, sticks to what he or she knows, and prefers less abstract arts and entertainment. ";
+	public String oNeutral="Your score on Openness to Experience is average, indicating you enjoy tradition but are willing to try new things. " + 
 			"Your thinking is neither simple nor complex. To others you appear to be a well-educated person but not an " + 
-			"intellectual.";
+			"intellectual. ";
 	public String oInfo="Open people are intellectually curious, appreciative of art, and sensitive to beauty. They tend to be, compared to " + 
 			"closed people, more aware of their feelings. They tend to think and act in individualistic and nonconforming ways. " + 
 			"Intellectuals typically score high on Openness to Experience; consequently, this factor has also been called Culture or " + 
@@ -133,132 +133,124 @@ public class PdfTextDataEnglish implements PdfTextData {
 			"presented as healthier or more mature by psychologists, who are often themselves open to experience. However, open " + 
 			"and closed styles of thinking are useful in different environments. The intellectual style of the open person may serve a " + 
 			"professor well, but research has shown that closed thinking is related to superior job performance in police work, sales, " + 
-			"and a number of service occupations. " + 
-			"Extraverts enjoy being with people, are full of energy, and often experience positive emotions. They tend to be " + 
-			"enthusiastic, action-oriented, individuals who are likely to say \"Yes!\" or \"Let's go!\" to opportunities for excitement. In " + 
-			"groups they like to talk, assert themselves, and draw attention to themselves. Introverts lack the exuberance, energy, " + 
-			"and activity levels of extraverts. They tend to be quiet, low-key, deliberate, and disengaged from the social world. Their " + 
-			"lack of social involvement should not be interpreted as shyness or depression; the introvert simply needs less " + 
-			"stimulation than an extravert and prefers to be alone. The independence and reserve of the introvert is sometimes " + 
-			"mistaken as unfriendliness or arrogance. In reality, an introvert who scores high on the agreeableness dimension will " + 
-			"not seek others out but will be quite pleasant when approached.";
+			"and a number of service occupations. ";
 	
 	public String facetO1="Imagination";
 	public String o1Info="To imaginative individuals, the real world is often too plain and ordinary. High scorers on this scale use fantasy as a way " + 
-			"of creating a richer, more interesting world. Low scorers are on this scale are more oriented to facts than fantasy.";
+			"of creating a richer, more interesting world. Low scorers are on this scale are more oriented to facts than fantasy. ";
 	public String facetO2="Artistic Interests";
 	public String o2Info="High scorers on this scale love beauty, both in art and in nature. They become easily involved and absorbed in artistic " + 
 			"and natural events. They are not necessarily artistically trained nor talented, although many will be. The defining " + 
 			"features of this scale are interest in, and appreciation of natural and artificial beauty. Low scorers lack aesthetic " + 
-			"sensitivity and interest in the arts.";
+			"sensitivity and interest in the arts. ";
 	public String facetO3="Emotionality";
 	public String o3Info="Persons high on Emotionality have good access to and awareness of their own feelings. Low scorers are less aware of " + 
-			"their feelings and tend not to express their emotions openly.";
+			"their feelings and tend not to express their emotions openly. ";
 	public String facetO4="Adventurousness";
 	public String o4Info="High scorers on adventurousness are eager to try new activities, travel to foreign lands, and experience different things. " + 
 			"They find familiarity and routine boring, and will take a new route home just because it is different. Low scorers tend to " + 
-			"feel uncomfortable with change and prefer familiar routines.";
+			"feel uncomfortable with change and prefer familiar routines. ";
 	public String facetO5="Intellect";
 	public String o5Info="Intellect and artistic interests are the two most important, central aspects of openness to experience. High scorers on " + 
 			"Intellect love to play with ideas. They are open-minded to new and unusual ideas, and like to debate intellectual issues. " + 
 			"They enjoy riddles, puzzles, and brain teasers. Low scorers on Intellect prefer dealing with either people or things " + 
 			"rather than ideas. They regard intellectual exercises as a waste of time. Intellect should not be equated with " + 
 			"intelligence. Intellect is an intellectual style, not an intellectual ability, although high scorers on Intellect score slightly " + 
-			"higher than low-Intellect individuals on standardized intelligence tests.";
+			"higher than low-Intellect individuals on standardized intelligence tests. ";
 	public String facetO6="Liberalism";
 	public String o6Info="Psychological liberalism refers to a readiness to challenge authority, convention, and traditional values. In its most " + 
 			"extreme form, psychological liberalism can even represent outright hostility toward rules, sympathy for law-breakers, " + 
 			"and love of ambiguity, chaos, and disorder. Psychological conservatives prefer the security and stability brought by " + 
 			"conformity to tradition. Psychological liberalism and conservatism are not identical to political affiliation, but certainly " + 
-			"incline individuals toward certain political parties.";
+			"incline individuals toward certain political parties. ";
 	
 //***************************************************************************************************************
 	
 	public String facetA="Agreeableness";
-	public String aDef="Agreeableness reflects individual differences in concern with cooperation and social harmony.";
-	public String aHigh="You score is high in agreeableness.You’re helpful and cooperative. Your loved ones may often turn to you for help. "
-			+ "People might see you as trustworthy. You may be the person others seek when they’re trying to resolve a disagreement."
-			+ "In some situations, you might a little too trusting or willing to compromise. Try to balance your knack for pleasing others with self-advocacy.";
-	public String aLow="You score is low in agreeableness.A low agreeableness score may mean you tend hold grudges. You might also be less sympathetic with others. But you are also likely avoid "
-						+ "the pitfalls of comparing yourself to others or caring about what others think of you.";
-	public String aNeutral="You score is average in agreeableness.You are always ready to help others but may be stubborn at your ideas.You are caring but may be self-centered at the same time."
-						+ "You may agree to others ideass but always want to have a say in it.";
+	public String aDef="Agreeableness reflects individual differences in concern with cooperation and social harmony. ";
+	public String aHigh="You score is high in agreeableness. You’re helpful and cooperative. Your loved ones may often turn to you for help. "
+			+ "People might see you as trustworthy. You may be the person others seek when they’re trying to resolve a disagreement. "
+			+ "In some situations, you might a little too trusting or willing to compromise. Try to balance your knack for pleasing others with self-advocacy. ";
+	public String aLow="You score is low in agreeableness. A low agreeableness score may mean you tend hold grudges. You might also be less sympathetic with others. But you are also likely avoid "
+						+ "the pitfalls of comparing yourself to others or caring about what others think of you. ";
+	public String aNeutral="You score is average in agreeableness. You are always ready to help others but may be stubborn at your ideas. You are caring but may be self-centered at the same time. "
+						+ "You may agree to others ideass but always want to have a say in it. ";
 	public String aInfo="Agreeable people are considerate, friendly, generous, helpful, and willing to compromise their interests with others'. " + 
 			"Agreeable people also have an optimistic view of human nature. They believe people are basically honest, decent, and " + 
-			"trustworthy.Disagreeable individuals place self-interest above getting along with others. They are generally " + 
+			"trustworthy. Disagreeable individuals place self-interest above getting along with others. They are generally " + 
 			"unconcerned with others' well-being, and therefore are unlikely to extend themselves for other people. Sometimes " + 
 			"their skepticism about others' motives causes them to be suspicious, unfriendly, and uncooperative. Agreeableness is " + 
 			"obviously advantageous for attaining and maintaining popularity. Agreeable people are better liked than disagreeable " + 
 			"people. On the other hand, agreeableness is not useful in situations that require tough or absolute objective decisions. " + 
-			"Disagreeable people can make excellent scientists, critics, or soldiers.";
+			"Disagreeable people can make excellent scientists, critics, or soldiers. ";
 	
 	public String facetA1="Trust";
 	public String a1Info="A person with high trust assumes that most people are fair, honest, and have good intentions. Persons low in trust see " + 
-			"others as selfish, devious, and potentially dangerous.";
+			"others as selfish, devious, and potentially dangerous. ";
 	public String facetA2="Morality";
 	public String a2Info="High scorers on this scale see no need for pretense or manipulation when dealing with others and are therefore " + 
 			"candid, frank, and sincere. Low scorers believe that a certain amount of deception in social relationships is necessary. " + 
 			"People find it relatively easy to relate to the straightforward high-scorers on this scale. They generally find it more " + 
 			"difficult to relate to the unstraightforward low-scorers on this scale. It should be made clear that low scorers are not " + 
-			"unprincipled or immoral; they are simply more guarded and less willing to openly reveal the whole truth.";
+			"unprincipled or immoral; they are simply more guarded and less willing to openly reveal the whole truth. ";
 	public String facetA3="Altruism";
 	public String a3Info="Altruistic people find helping other people genuinely rewarding. Consequently, they are generally willing to assist " + 
 			"those who are in need. Altruistic people find that doing things for others is a form of self-fulfillment rather than selfsacrifice. Low scorers on this scale do not particularly like helping those in need. Requests for help feel like an " + 
-			"imposition rather than an opportunity for self-fulfillment.";
+			"imposition rather than an opportunity for self-fulfillment. ";
 	public String facetA4="Cooperation";
 	public String a4Info="Individuals who score high on this scale dislike confrontations. They are perfectly willing to compromise or to deny " + 
 			"their own needs in order to get along with others. Those who score low on this scale are more likely to intimidate " + 
-			"others to get their way.";
+			"others to get their way. ";
 	public String facetA5="Modesty";
 	public String a5Info="High scorers on this scale do not like to claim that they are better than other people. In some cases this attitude may " + 
 			"derive from low self-confidence or self-esteem. Nonetheless, some people with high self-esteem find immodesty " + 
 			"unseemly. Those whoare willing to describe themselves as superior tend to be seen as disagreeably arrogant by other " + 
-			"people.";
+			"people. ";
 	public String facetA6="Sympathy";
 	public String a6Info="People who score high on this scale are tenderhearted and compassionate. They feel the pain of others vicariously and " + 
 			"are easily moved to pity. Low scorers are not affected strongly by human suffering. They pride themselves on making " + 
-			"objective judgments based on reason. They are more concerned with truth and impartial justice than with mercy.";
+			"objective judgments based on reason. They are more concerned with truth and impartial justice than with mercy. ";
 
 //***************************************************************************************************************
 	
 	public String facetC="Conscientiousness";
-	public String cDef="Conscientiousness concerns the way in which we control, regulate, and direct our impulses.";
+	public String cDef="Conscientiousness concerns the way in which we control, regulate, and direct our impulses. ";
 	public String cHigh="You are a conscientious person, you might follow a regular schedule and have a knack for keeping track of details. "
-			+ "You likely deliberate over options and work hard to achieve your goals. Coworkers and friends might see you as a reliable, fair person."
-			+ "You may tend to micromanage situations or tasks. You might also be cautious or difficult to please.";
+			+ "You likely deliberate over options and work hard to achieve your goals. Coworkers and friends might see you as a reliable, fair person. "
+			+ "You may tend to micromanage situations or tasks. You might also be cautious or difficult to please. ";
 	public String cLow="People who are low in Conscientiousness are less interested in long-term goals and more interested in responding to the moment. They are more fun-loving than hardworking, and are easily distracted. "
-			+ "People low in Conscientiousness tend to abandon plans easily when something more attractive arises. They are often disorganized and go about tasks in a haphazard manner.";
-	public String cNeutral="Your score for Conscientiousness is average. You are organized person for things with priority but may not be soo much organized for normal day to day activities."
-						+ "You may be difficult to please at starting but once they are known to you people may find you reliable.";
-	public String cInfo="Conscientiousness seems to be fundamentally related to impulse control, or our ability to stop ourselves from doing what might be fun or appealing in the moment in order to pursue a more important long-term goal. We more often refer to this as willpower in everyday language." + 
-			"Impulse control is associated with the frontal lobe of the brain, where our highest levels of thinking take place. The frontal lobes govern high-level planning, problem-solving, judgement, and other important cognitive abilities. The frontal lobes are the part of the brain that make us uniquely human; they take the more animalistic impulses sent by the rest of the brain (“There’s food there! Eat it!”) and modulate them to suit our more complex plans and goals (“I’m not going to eat this donut because I am trying to lose weight.”)." + 
-			"In one brain imaging study, people high in Conscientiousness showed a higher level of activation in the frontal lobes when doing a task that required them to control their behavior. This suggests that the brain areas that are responsible for controlling impulses are more active in people high in Conscientiousness.";
+			+ "People low in Conscientiousness tend to abandon plans easily when something more attractive arises. They are often disorganized and go about tasks in a haphazard manner. ";
+	public String cNeutral="Your score for Conscientiousness is average. You are organized person for things with priority but may not be soo much organized for normal day to day activities. "
+						+ "You may be difficult to please at starting but once they are known to you people may find you reliable. ";
+	public String cInfo="Conscientiousness seems to be fundamentally related to impulse control, or our ability to stop ourselves from doing what might be fun or appealing in the moment in order to pursue a more important long-term goal. We more often refer to this as willpower in everyday language. " + 
+			"Impulse control is associated with the frontal lobe of the brain, where our highest levels of thinking take place. The frontal lobes govern high-level planning, problem-solving, judgement, and other important cognitive abilities. The frontal lobes are the part of the brain that make us uniquely human; they take the more animalistic impulses sent by the rest of the brain (“There’s food there! Eat it!”) and modulate them to suit our more complex plans and goals (“I’m not going to eat this donut because I am trying to lose weight. ”). " + 
+			"In one brain imaging study, people high in Conscientiousness showed a higher level of activation in the frontal lobes when doing a task that required them to control their behavior. This suggests that the brain areas that are responsible for controlling impulses are more active in people high in Conscientiousness. ";
 	
 	public String facetC1="Self-Efficacy";
 	public String c1Info="Self-Efficacy describes confidence in one's ability to accomplish things. High scorers believe they have the intelligence " + 
 			"(common sense), drive, and self-control necessary for achieving success. Low scorers do not feel effective, and may " + 
-			"have a sense that they are not in control of their lives.";
+			"have a sense that they are not in control of their lives. ";
 	public String facetC2="Orderliness";
 	public String c2Info="Persons with high scores on orderliness are well-organized. They like to live according to routines and schedules. They " + 
-			"keep lists and make plans. Low scorers tend to be disorganized and scattered.";
+			"keep lists and make plans. Low scorers tend to be disorganized and scattered. ";
 	public String facetC3="Dutifulness";
 	public String c3Info="This scale reflects the strength of a person's sense of duty and obligation. Those who score high on this scale have a " + 
 			"strong sense of moral obligation. Low scorers find contracts, rules, and regulations overly confining. They are likely to " + 
-			"be seen as unreliable or even irresponsible.";
+			"be seen as unreliable or even irresponsible. ";
 	public String facetC4="Achievement-Striving";
 	public String c4Info="Individuals who score high on this scale strive hard to achieve excellence. Their drive to be recognized as successful " + 
 			"keeps them on track toward their lofty goals. They often have a strong sense of direction in life, but extremely high " + 
 			"scores may be too single-minded and obsessed with their work. Low scorers are content to get by with a minimal " + 
-			"amount of work, and might be seen by others as lazy.";
+			"amount of work, and might be seen by others as lazy. ";
 	public String facetC5="Self-Discipline";
 	public String c5Info="Self-discipline-what many people call will-power-refers to the ability to persist at difficult or unpleasant tasks until they " + 
 			"are completed. People who possess high self-discipline are able to overcome reluctance to begin tasks and stay on " + 
 			"track despite distractions. Those with low self-discipline procrastinate and show poor follow-through, often failing to " + 
-			"complete tasks-even tasks they want very much to complete.";
+			"complete tasks-even tasks they want very much to complete. ";
 	public String facetC6="Cautiousness";
 	public String c6Info="Cautiousness describes the disposition to think through possibilities before acting. High scorers on the Cautiousness " + 
 			"scale take their time when making decisions. Low scorers often say or do first thing that comes to mind without " + 
-			"deliberating alternatives and the probable consequences of those alternatives.";
+			"deliberating alternatives and the probable consequences of those alternatives. ";
 	
 	public String getResult() {
 		return result;
