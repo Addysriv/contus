@@ -39,6 +39,14 @@ import com.addy.contus.utility.ContusThreadUtility;
 import com.addy.contus.utility.EmailSenderUtility;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+/**
+ * 
+ * 
+ * @author Aditya Srivastava
+ * 
+ *
+ */
+
 
 @Controller
 public class BaseFunctionController {
@@ -157,7 +165,18 @@ public class BaseFunctionController {
 			}
 		}
 		else if(payment!=null && payment.equalsIgnoreCase("swish")) {
+			// confirm order status then save in DB then transfer according to respective URL.
 			
+			logger.info(" !!!!!!!!!! Swish Payment completed , transferring to test. !!!!!!!");
+			try {
+				//logger.info("*******"+request.getSession().getId());
+				request.getSession().setAttribute("validRequest", "true");
+				response.sendRedirect(request.getContextPath()+"/test");
+
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
 		}
 
 		try {
@@ -207,7 +226,7 @@ public class BaseFunctionController {
 			
 			//save customer as customer is not yet being saved
 			
-			boolean dataSaved=paymentService.saveCustomerData(name, email, couponCode, String.valueOf(coupon.getRedeemedNumb()), "0.00", "Coupon",request,language);
+			boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, couponCode, String.valueOf(coupon.getRedeemedNumb()), "0.00", "Coupon",request,language);
 			logger.info(" !!!!!!!! Free coupon customer data saved status - "+dataSaved);
 			
 			return "free-"+request.getContextPath()+"/choice";
@@ -230,6 +249,20 @@ public class BaseFunctionController {
 
 		else {
 			logger.info("!!!!!! Payment mode Swish !!!!!!!!!");
+			
+
+			if(coupon==null) {
+				boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, null, null, "19900", "Swish",request,language);
+				logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
+				
+			}
+			else {
+				boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, couponCode, String.valueOf(coupon.getRedeemedNumb()), coupon.getAmount(), "Swish",request,language);
+				logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
+				
+			}
+			
+			
 			
 			return "swish";
 		}

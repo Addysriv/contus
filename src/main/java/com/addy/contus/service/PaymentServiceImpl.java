@@ -144,6 +144,10 @@ public class PaymentServiceImpl implements PaymentService {
 		else
 			amnt="9900";
 		
+/*		String couponCode=(String) request.getSession().getAttribute("couponCode");
+		if(couponCode!=null && !couponCode.equalsIgnoreCase("none"))
+			 updateCoupon(couponCode,(String) request.getSession().getAttribute("couponNumb"));
+*/
 		
 		String user=klarnaUserName;
 		String password=klarnaUserPassword;
@@ -325,7 +329,7 @@ public class PaymentServiceImpl implements PaymentService {
 		       /* cust.setAddress(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("street_address").getAsString() +" addrerss 2 - "
 		        				+root.getAsJsonObject().get("billing_address").getAsJsonObject().get("street_address2").getAsString()+ " postal code : "+
 		        				 root.getAsJsonObject().get("billing_address").getAsJsonObject().get("postal_code").getAsString());*/
-		       // cust.setMobile(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("phone").getAsString());
+		        cust.setMobile(root.getAsJsonObject().get("billing_address").getAsJsonObject().get("phone").getAsString());
 		        cust.setPaymentMethod("klarna");
 		        cust.setOrderId(root.getAsJsonObject().get("order_id").getAsString());
 		        cust.setAmountPaid(root.getAsJsonObject().get("order_amount").getAsString());
@@ -748,7 +752,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 	}
 	
-	public boolean saveCustomerData(String custName,String custEmail,String couponCode,String couponRedeemedNumb,String amount,
+	public boolean saveCustomerData(String custName,String custEmail,String mobile,String couponCode,String couponRedeemedNumb,String amount,
 												String paymentMethod,HttpServletRequest request,String language) {
 		
 		logger.info("******** In save Customer Data *******");
@@ -768,6 +772,7 @@ public class PaymentServiceImpl implements PaymentService {
 		cust.setCustName(custName);
 		cust.setCouponUsed(couponCode);
 		cust.setEmail(custEmail);
+		cust.setMobile(mobile);
 		cust.setAmountPaid(amount);
 		cust.setPaymentMethod(paymentMethod);
 		cust.setOrderId(orderId);
@@ -781,6 +786,42 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		return dataSaved;
 	}
+	
+	public boolean saveSwishCustomerData(String custName,String custEmail,String mobile,String couponCode,String couponRedeemedNumb,String amount,
+			String paymentMethod,HttpServletRequest request,String language) {
+
+		logger.info("******** In save Customer Data *******");
+		boolean dataSaved=true;
+		String orderId=custName+custEmail+couponCode;
+		logger.info("!!!!!!!!!!! Manual Unique Order Id - "+orderId);
+		request.getSession().setAttribute("orderId", orderId);
+		request.getSession().setAttribute("payment", paymentMethod);
+		request.getSession().setAttribute("couponCode", couponCode);
+		request.getSession().setAttribute("couponAmount", amount);
+		request.getSession().setAttribute("couponNumb", couponRedeemedNumb);
+		request.getSession().setAttribute("language", language);
+/*		
+		if(couponCode!=null)
+		 updateCoupon(couponCode,couponRedeemedNumb);
+*/
+		Customer cust = new Customer();
+		cust.setCustName(custName);
+		cust.setCouponUsed(couponCode);
+		cust.setEmail(custEmail);
+		cust.setMobile(mobile);
+		cust.setAmountPaid(amount);
+		cust.setPaymentMethod(paymentMethod);
+		cust.setOrderId(orderId);
+		cust.setOrderStatus("incomplete");
+
+		String response=saveCustomer(cust);
+		if(response=="error")
+		{
+			dataSaved=false;
+		}
+
+		return dataSaved;
+}
 	
 	
 	public boolean sendContactForm(String name,String company,String email,String msg)

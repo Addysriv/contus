@@ -7,6 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import com.addy.contus.entity.Coupon;
 import com.addy.contus.entity.TestResult;
 
+
+/**
+ * 
+ * 
+ * 
+ * @author Aditya Srivastava
+ *
+ */
+
+
 public interface PaymentService {
 	
 	
@@ -26,7 +36,9 @@ public interface PaymentService {
 	
 	public void updateCoupon(String couponCode, String couponNumb);
 	
-	public boolean saveCustomerData(String custName,String custEmail,String couponCode,String couponRedeemedNumb,String amount,String paymentMethod,HttpServletRequest request,String language);
+	public boolean saveCustomerData(String custName,String custEmail,String mobile,String couponCode,String couponRedeemedNumb,String amount,String paymentMethod,HttpServletRequest request,String language);
+	
+	public boolean saveSwishCustomerData(String custName,String custEmail,String mobile,String couponCode,String couponRedeemedNumb,String amount,String paymentMethod,HttpServletRequest request,String language); 
 	
 	public boolean sendContactForm(String name,String comppany,String email,String msg);
 }
