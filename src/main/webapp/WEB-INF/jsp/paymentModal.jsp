@@ -31,13 +31,15 @@
  var defaultLanguage='';
  var userLang = '${lang}';
  defaultLanguage=userLang;
- 
+ var swishCheckoutUrl="";
  var klarnaClicked=false;
  var swishClicked=false;
  var checkIfCouponValid=true;
  var invalidErrorCode='<spring:message code="label.contus.invalidCoupon" />';
  var couponApplied='<spring:message code="label.contus.validCoupon" />';
  var currency= '<spring:message code="label.contus.sek" />';
+ var swishPayeeErrorMsg="Mobile number not enrolled with swish."
+ 
  
  function checkCheckBox(){
 	 if(document.getElementById('termsCheckBox').checked==true)
@@ -254,7 +256,7 @@ function continuePayment(){
 	var name=$('#userName').val();
 	var email=$('#userEmail').val();
 	var coupon=$('#userCoupon').val();
-	
+	var mobile=$('#userMobile').val();
 	var payment=$("input[name='paymentMethod']:checked").val();
 	if(payment==undefined)
 		{
@@ -277,6 +279,7 @@ function continuePayment(){
 			userEmail : email,
 			userCoupon : coupon,
 			paymentMode : payment,
+			userMobile : mobile,
 			lang:defaultLanguage
 			}), 
 			success : function(jqXHR) {
@@ -290,10 +293,37 @@ function continuePayment(){
 					
 					window.location.href = ur[1];
 				}
-				else if(jqXHR=='error'){
-					console.log("error occured");
-					window.location.href = '${pageContext.request.contextPath}/errorPage';
+				else if(jqXHR.includes('swish::')){
+					var ur=jqXHR.split('::');
+					swishCheckoutUrl=ur[1];
+					$('#paymentDiv').css("display","none");
+					$('#swishPaymentDiv').css("display","block");
+					startSwishConfiguration(); 
+					
 				}
+				else if(jqXHR.includes('swish::')){
+					var ur=jqXHR.split('::');
+					swishCheckoutUrl=ur[1];
+					$('#paymentDiv').css("display","none");
+					$('#swishPaymentDiv').css("display","block");
+					startSwishConfiguration(); 
+					
+				}
+				else if(jqXHR.includes('errorSwish:')){
+					console.log("error occured");
+					var ur=jqXHR.split(':');
+					var errorMsg=ur[1];
+					if(errorMsg=="ACMT03"){
+					$('#swishErrorDiv').show();
+					$('#swishErrorText').text(swishPayeeErrorMsg);
+					}
+					else{
+						$('#swishErrorDiv').show();
+						$('#swishErrorText').text(errorMsg);
+					}
+					//window.location.href = '${pageContext.request.contextPath}/errorPage';
+				}
+				
 				else{
 				$('#KCO').val(jqXHR);
 				startKlarnaMethod();
@@ -315,6 +345,15 @@ function openGdpr(){
 function openPrivacyPolicy(){
 	
 	window.open("${pageContext.request.contextPath}/privacyPolicy");
+}
+
+
+function startSwishConfiguration(){
+	
+	$("#swish-success").hide();
+	$("#message-timeout").hide();
+	var threeminutes = 60 * 3, display = document.querySelector('#time');
+	startTimer(threeminutes, display);
 }
 
 </script>
@@ -435,7 +474,7 @@ function openPrivacyPolicy(){
 						</div>
 					
 						<br>
-							<div class="row" class="userDataDiv">
+							<div class="row userDataDiv">
 								<div class="col-sm-3"></div>
 								<div class="col-sm-6">
 									<input type="text" placeholder="&nbsp;&nbsp;<spring:message code="label.contus.contactName" />"	 id="userName">
@@ -443,7 +482,7 @@ function openPrivacyPolicy(){
 								</div>
 							</div>
 							<br><br>
-							<div class="row" class="userDataDiv">
+							<div class="row userDataDiv">
 								<div class="col-sm-3"></div>
 								<div class="col-sm-6">
 									<input type="text" placeholder="&nbsp;&nbsp;<spring:message code="label.contus.contactEmail" />"  id="userEmail">
@@ -451,14 +490,23 @@ function openPrivacyPolicy(){
 								</div>
 							</div>
 							<br><br>
-							<div class="row" class="userDataDiv">
+							<div class="row userDataDiv">
 								<div class="col-sm-3"></div>
 								<div class="col-sm-6">
 									<input type="text" placeholder="&nbsp;&nbsp;<spring:message code="label.contus.contactMobile" />"  id="userMobile">
 									<span id="incorrectMobile" style="color:red;margin-left: 2%;"></span>
 								</div>
 							</div>
-						
+							
+							<div class="row"  id="swishErrorDiv" style="display:none;">
+							<br>
+								<div class="col-sm-3"></div>
+								<div class="col-sm-6" style="padding-top: 1%;padding-left: 2%;">
+									
+									&nbsp;&nbsp;<span id="swishErrorText"></span>
+									<br>
+								</div>
+							</div>
 						
 						<br>
 						
@@ -522,6 +570,9 @@ function openPrivacyPolicy(){
 			</div>
 					
 					
+	<div id="swishPaymentDiv" style="display:none;">
+		<%@ include file="swishClock.jsp" %> 
+	</div>
 
 
 
@@ -720,6 +771,18 @@ font-family:  Avenir next, sans-serif;
     line-height: normal;
     letter-spacing: 5.58px;
     color: #525252;
+}
+
+#swishErrorText{
+
+    font-family: Avenir next, sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    color: orange;
+
 }
 
 button.active.focus, button.active:focus,

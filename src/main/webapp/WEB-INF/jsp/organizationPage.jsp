@@ -423,7 +423,7 @@ else
 			<!-- <div class="col-sm-1"></div> -->
 			<div class="col-sm-5">
 			<!-- <img  src="resources/orange.jpg" id="orangeImage" alt="Test Brief" style="width: 84%;margin-top:8%;height:500px;"> -->
-		<img  src="resources/mainImageSmall.png" class="img-responsive" id="handImage" alt="Test Brief" style="margin-left: -10%;max-width: 120%;margin-top: -5%;">
+		<img  src="resources/mainImageCompany.png" class="img-responsive" id="handImage" alt="Test Brief" style="margin-left: -10%;max-width: 120%;margin-top: 8%;">
 			</div>
 
 		</div>
@@ -456,7 +456,7 @@ else
 						
 						<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button>
 					</div>
-					<div class="modal-body" style="padding: 45px;">
+					<div class="modal-body" style="padding: 15px;">
 						<%-- <jsp:include page="paymentModal" />   --%>
 					<%@ include file="paymentModal.jsp" %> 
 					</div>
@@ -1441,7 +1441,7 @@ margin-left: 12%;
 
 #handImage{
 margin-top: 10% !important;
-margin-left: -5% !important;
+/* margin-left: -5% !important; */
 
 }
 

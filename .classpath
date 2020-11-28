@@ -62,5 +62,4 @@
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.10.0/jackson-core-2.10.0.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.10.0/jackson-core-2.10.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.10.0/jackson-databind-2.10.0.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.10.0/jackson-databind-2.10.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.10.0/jackson-annotations-2.10.0.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.10.0/jackson-annotations-2.10.0-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" sourcepath="M2_REPO/org/projectlombok/lombok/1.18.12/lombok-1.18.12-sources.jar"/>
 </classpath>

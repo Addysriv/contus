@@ -766,7 +766,8 @@ public class PaymentServiceImpl implements PaymentService {
 		request.getSession().setAttribute("couponNumb", couponRedeemedNumb);
 		request.getSession().setAttribute("language", language);
 		
-		updateCoupon(couponCode,couponRedeemedNumb);
+		if(couponCode!=null)
+			updateCoupon(couponCode,couponRedeemedNumb);
 		
 		Customer cust = new Customer();
 		cust.setCustName(custName);

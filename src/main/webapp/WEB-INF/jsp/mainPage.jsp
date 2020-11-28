@@ -444,7 +444,7 @@ else
 						
 						<button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button>
 					</div>
-					<div class="modal-body" style="padding: 45px;">
+					<div class="modal-body" style="padding: 15px;">
 						<%-- <jsp:include page="paymentModal" />   --%>
 					<%@ include file="paymentModal.jsp" %> 
 					</div>

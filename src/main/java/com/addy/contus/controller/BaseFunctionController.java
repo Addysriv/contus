@@ -1,7 +1,9 @@
 package com.addy.contus.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Locale;
+import java.net.ProtocolException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import org.apache.log4j.Logger;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.addy.contus.dao.ContusDao;
 import com.addy.contus.entity.BigFiveAgreeableness;
@@ -35,8 +38,12 @@ import com.addy.contus.entity.QuestionSet;
 import com.addy.contus.entity.ReCaptchaResponse;
 import com.addy.contus.entity.TestResult;
 import com.addy.contus.service.PaymentService;
+import com.addy.contus.service.SwissPaymentGatewayService;
+import com.addy.contus.service.exception.SwishPaymentCreationException;
 import com.addy.contus.utility.ContusThreadUtility;
 import com.addy.contus.utility.EmailSenderUtility;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 /**
@@ -71,6 +78,9 @@ public class BaseFunctionController {
 		
 	@Autowired
 	LocaleChangeInterceptor interceptor;
+	
+	@Autowired
+	SwissPaymentGatewayService swissPaymentGatewayService;
 	
 	@Value("${captchaVerifUrl}")
 	public String captchaUrl;
@@ -210,6 +220,7 @@ public class BaseFunctionController {
 		request.getSession().setAttribute("userName",name);
 		map.put("lang", language);
 		Coupon coupon=paymentService.checkValidCoupon(couponCode);
+		String amount="19900";
 		if(coupon==null)
 		{
 			request.getSession().setAttribute("couponCode","none");
@@ -219,6 +230,7 @@ public class BaseFunctionController {
 			request.getSession().setAttribute("couponCode",coupon.getCouponCode());
 			request.getSession().setAttribute("couponAmount",coupon.getAmount());
 			request.getSession().setAttribute("couponNumb",String.valueOf(coupon.getRedeemedNumb()));
+			amount=coupon.getAmount();
 		}
 		if(coupon!=null && (coupon.getAmount().equals("0") || coupon.getAmount().equals("0.0") || coupon.getAmount().equals("0.00")))
 		{
@@ -249,22 +261,27 @@ public class BaseFunctionController {
 
 		else {
 			logger.info("!!!!!! Payment mode Swish !!!!!!!!!");
-			
 
-			if(coupon==null) {
-				boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, null, null, "19900", "Swish",request,language);
-				logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
-				
-			}
-			else {
-				boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, couponCode, String.valueOf(coupon.getRedeemedNumb()), coupon.getAmount(), "Swish",request,language);
-				logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
-				
-			}
+			 String swishUrl=swissPaymentGatewayService.createSwissPaymentGateway(amount, mobileNumb);
+			 logger.info("##### swishUrl :"+swishUrl);
+			 if(swishUrl.contains("errorSwish:"))
+			 {
+				 return swishUrl;
+			 }
+			 else {
+					if(coupon==null) {
+						boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, null, null, amount, "Swish",request,language);
+						logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
+						
+					}
+					else {
+						boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, couponCode, String.valueOf(coupon.getRedeemedNumb()), coupon.getAmount(), "Swish",request,language);
+						logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
+					}
+			 }
+			//map.put("paymentRequestInfoUrl",swishUrl );
 			
-			
-			
-			return "swish";
+			 return "swish::"+swishUrl;
 		}
 
 	}
@@ -738,15 +755,34 @@ public class BaseFunctionController {
 	 
 	    }
 	 
-	 /*@ExceptionHandler(ResourceNotFoundException.class)
-	    @ResponseStatus(HttpStatus.NOT_FOUND)
-	    public String handleResourceNotFoundException() {
-	        return "meters/notfound";
-	    }*/
 	 
 	 @RequestMapping("/developer")
 	 public String developerInfo() {
 		 
 		 return "developer";
 	 }
+	 
+	 
+
+	  @RequestMapping(value = "/swish-create-payment", method = RequestMethod.GET)
+	  public String createPaymentLinkForSwishPaymentGateway(ModelMap map) throws MalformedURLException,
+	      ProtocolException, JsonProcessingException, IOException, SwishPaymentCreationException {
+	    String amount = "100";
+	    String payerAlias = "9999999999";
+	    map.put("paymentRequestInfoUrl",
+	        swissPaymentGatewayService.createSwissPaymentGateway(amount, payerAlias));
+	    return "swishClock";
+	  }
+
+	  @ExceptionHandler(SwishPaymentCreationException.class)
+	  @ResponseBody
+	  public String handleSwishPaymentGatewayException(SwishPaymentCreationException ex) {
+	    return ex.getMessage();
+	  }
+
+	 
+	 
+	 
+	 
+	 
 }
