@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -137,12 +139,18 @@ public class PaymentServiceImpl implements PaymentService {
 		String amnt=(String) request.getSession().getAttribute("couponAmount");
 		if(amnt!=null ) {
 			logger.info("amount  - "+amnt);
-			if(amnt.length()==2)
+			if(amnt.contains("."))
+			{
+				String amntArr[]=amnt.split("\\.");
+				logger.info(amntArr.length);
+				logger.info(amntArr[0]);
+				amnt=amntArr[0];
+			}
 				amnt=amnt+"00";
 			
 		}
 		else
-			amnt="9900";
+			amnt="19900";
 		
 /*		String couponCode=(String) request.getSession().getAttribute("couponCode");
 		if(couponCode!=null && !couponCode.equalsIgnoreCase("none"))
@@ -498,7 +506,8 @@ public class PaymentServiceImpl implements PaymentService {
 	
 	public Coupon checkValidCoupon(String code)
 	{
-		
+		if(code==null)
+			return null;
 		Coupon coupon=contusDao.checkValidCoupon(code);
 		
 		
@@ -757,7 +766,7 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		logger.info("******** In save Customer Data *******");
 		boolean dataSaved=true;
-		String orderId=custName+custEmail+couponCode;
+		String orderId=custName+custEmail+couponCode+RandomStringUtils.randomAlphanumeric(6).toUpperCase(Locale.ENGLISH);
 		logger.info("!!!!!!!!!!! Manual Unique Order Id - "+orderId);
 		request.getSession().setAttribute("orderId", orderId);
 		request.getSession().setAttribute("payment", paymentMethod);
@@ -793,7 +802,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 		logger.info("******** In save Customer Data *******");
 		boolean dataSaved=true;
-		String orderId=custName+custEmail+couponCode;
+		String orderId=custName+custEmail+couponCode+RandomStringUtils.randomAlphanumeric(6).toUpperCase(Locale.ENGLISH);
 		logger.info("!!!!!!!!!!! Manual Unique Order Id - "+orderId);
 		request.getSession().setAttribute("orderId", orderId);
 		request.getSession().setAttribute("payment", paymentMethod);

@@ -16,6 +16,13 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
 <title>Swish Payment Gateway</title>
 <script type="text/javascript">
+
+
+
+var swishTimeoutMsg="<spring:message code="label.contus.swishLimitReached" />";
+
+
+
 	function startTimer(duration, display) {
 		var newseconds = 180;
 		var timer = duration, minutes, seconds;
@@ -23,7 +30,7 @@
 			if (newseconds <= 0) {
 				clearInterval(counter);
 				//$("#message-timeout").show();
-				$('#openSwishAppText').text('SWISH REACHED A TIME LIMIT BEFORE PAYMENT STARTED!');
+				$('#openSwishAppText').text(swishTimeoutMsg);
 				$('#time').text('00:00');
 				$('#swishAnimeImg').removeClass('rotate');
 				return;
@@ -55,7 +62,7 @@
 				clearInterval(counter);
 				/* $("#swish-timeout").hide();
 				$("#message-timeout").show(); */
-				$('#openSwishAppText').text('SWISH REACHED A TIME LIMIT BEFORE PAYMENT STARTED');
+				$('#openSwishAppText').text(swishTimeoutMsg);
 				$('#time').text('00:00');
 				$('#swishAnimeImg').removeClass('rotate');
 				return;
@@ -85,7 +92,8 @@
 					}),
 					async : false,
 					success : function(data) {
-
+						debugger;
+						console.log(data);
 						//console.log the response
 						if (data == 'CREATED') {
 							console.log("Do Nothing!!Continue till we get Success or Fail Response");
@@ -98,7 +106,7 @@
 						} else if (data.includes("PAID")) {
 							var ur=data.split(':');
 							clearInterval(timeoutCounter2);
-							
+							$("#swish-success").show();
 							window.location.href = '${pageContext.request.contextPath}/'+ur[1];
 						}
 
@@ -217,7 +225,7 @@ div#message-timeout {
 		<div class="row">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8" style="text-align: center;">
-				<span id="openSwishAppText">Launch Swish Apk And Accept the Payment</span>
+				<span id="openSwishAppText"> <spring:message code="label.contus.launchSwish" /></span>
 				
 			</div>
 		
@@ -227,7 +235,7 @@ div#message-timeout {
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8" style="text-align: center;">
 				<div class="center" >
-					<img src="resources/swishImage.png" id="swishAnimeImg"
+					<img src="resources/swishImageCrop.png" id="swishAnimeImg"
 						style="width: 21%;"	class="rotate" /> 
 						<span id="swishText">
 						</span>
@@ -246,28 +254,7 @@ div#message-timeout {
 	</div>
 
 	<div id="swish-success">
-		<br>
-		<div class="row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-6" style="text-align: center;">
-				<div class="center;">
-					<div class="row text-center">
-						<div class="col-sm-6 col-sm-offset-3">
-							<br> <br>
-							<p>Detail Message</p>
-							<div class="alert alert-success">
-								<strong>Success!</strong>
-							</div>
-							<dl class="dl-horizontal">
-								<dt>Payment Successful in Swish Gateway. Redirecting you to
-									HomePage</dt>
-
-							</dl>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	
 	</div>
 	<br>
 	

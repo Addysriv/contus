@@ -33,7 +33,7 @@
 
 
 <meta charset="ISO-8859-1">
-<title>Contus Error Page</title>
+<title><spring:message code="label.contus.errorPage" /></title>
 </head>
 <body>
 
@@ -45,10 +45,10 @@
 			<div id="errorDiv" class="col-sm-10">
 			<!-- <span id="aboveError">Oops </span> -->
 			<br><br>
-			<span id="errorText" >Error Occured!!!</span> <br>
-			<br><span id="belowError">Sorry, It looks like something went wrong.<br>Please contact us in case of any issues or return to home page.</span>
+			<span id="errorText" ><spring:message code="label.contus.errorOccur" /></span> <br>
+			<br><span id="belowError"><spring:message code="label.contus.errorSorryText" /><br><spring:message code="label.contus.errorSorryText2" /></span>
 			<br><br><br><br><br>
-			<button id="homePage" onclick="redirectToHome();"><span id="homeText">Home Page</span></button>
+			<button id="homePage" onclick="redirectToHome();"><span id="homeText"><spring:message code="label.contus.homePage" /></span></button>
 			
 			</div>
 		</div>

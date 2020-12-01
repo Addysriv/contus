@@ -82,33 +82,39 @@ $( document ).ready(function() {
 		console.log("The language is: Swedish - " + defaultLang);
 		
 		$("#englishLang").css("text-decoration","none");
+		$("#englishLangMob").css("text-decoration","none");
 		$("#swishLang").css("text-decoration","underline");
+		$("#swishLangMob").css("text-decoration","underline");
 		$('#impressDiv').css("margin-left","-4%");
 		$('#rightCandId').css("margin-left","16%");
 		$('#testStartButton').css("margin-left","-17%");
-		$('#organizLik').css("width","193px");
+		$('#organizLik').css("width","203px");
 		$('#lowerContusData').css("font-size","27px");
 		$('#thankText').css("margin-left","11%");
 		$('#getBackText').css("margin-left","6%");
-		
+		$('#testStartLink').css("width","101px");
 	}
 	else
 		{
 		console.log ("The language is: " + "English - "+defaultLang);
 		$("#englishLang").css("text-decoration","underline");
 		$("#swishLang").css("text-decoration","none");
+		$("#englishLangMob").css("text-decoration","underline");
+		$("#swishLangMob").css("text-decoration","none");
 		$('#impressDiv').css("margin-left","-4%");
 		$('#rightCandId').css("margin-left","10%");
-		$('#organizLik').css("width","165px");
+		$('#organizLik').css("width","166px");
 		$('#lowerContusData').css("font-size","25px");
+		$('#testStartLink').css("width","145px");
+		
 		//$('#testStartButton').css("margin-left","-3%");
 		}
 	
-	if(screen.width<=790 && screen.width>=765)
+	if(screen.width<=790 && screen.width>=767)
 	{
 		if(userLang=="sv")
 			{
-			$('#organizLik').css("width","152px");
+			$('#organizLik').css("width","154px");
 			}
 		else
 			{
@@ -117,7 +123,7 @@ $( document ).ready(function() {
 		
 	}
 	
-	
+
 	$("#headerButton").on("click",function(){
 		
 		if(toggleFlag){
@@ -223,7 +229,11 @@ else
 			<a class="navbar-brand" href="#" id="contusLogo"><img  id="contusLogoImg"
 				src="<c:url value="/resources/logo2.png" ></c:url>"
 				alt="Contus Logo" style="width: 20%;"> </a>
- 
+ 			<div id="langMobileView" style="margin-left: 25%;display:none;">
+				 <a class="" id="swishLangMob" style="color:black;font-size:14px;font-family: Avenir next, sans-serif;" href="${pageContext.request.contextPath}/svenskaOrg" >SVE</a>
+				 /
+				  <a class="" id="englishLangMob" style="color:black;font-size:14px;font-family: Avenir next, sans-serif;" href="${pageContext.request.contextPath}/englishOrg" >ENG</a>
+			</div>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"  id="headerButton"
 				data-target="#navbarResponsive">
 				<span class="navbar-toggler-icon"></span>
@@ -231,17 +241,24 @@ else
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" >
-					<li class="nav-item active" id="testStartLink" style="width: 145px;"><a class="nav-link" style="float: right;" onclick="startTest();" href="#"><spring:message code="label.contus.doTest" /></a></li>&nbsp;&nbsp;
+					<li class="nav-item langClass" id="navEnlgish" style="font-size:11px;margin-top: 2px;margin-left:2%;"> 
+					 <a class="nav-link " id="englishLang" href="${pageContext.request.contextPath}/englishOrg" ><spring:message code="label.contus.english" /></a>
+					</li>
+					<li class="nav-item langClass" style="font-size:11px;margin-top: 2px;margin-right: 1%;"> 
+					 <a class="nav-link" id="swishLang" href="${pageContext.request.contextPath}/svenskaOrg" ><spring:message code="label.contus.swedish" /></a>
+					</li> 
+					<li class="nav-item"><div class="vl"></div></li>
+					<li class="nav-item active" id="testStartLink" ><a class="nav-link" style="float: right;" onclick="startTest();" href="#"><spring:message code="label.contus.doTest" /></a></li>&nbsp;&nbsp;
 					  <li class="nav-item" id="organizLik" ><a class="nav-link"  href="${pageContext.request.contextPath}/home"><spring:message code="label.contus.org.jobSeekers" /></a></li>&nbsp;&nbsp; 
 					<li class="nav-item"><a class="nav-link" href="#faqTitle" style=""><spring:message code="label.contus.faq" /></a></li>&nbsp;&nbsp;
 					<li class="nav-item"><a class="nav-link" href="#" onclick="contactForm();"><spring:message code="label.contus.contact" /></a></li>&nbsp;&nbsp;
-					 <li class="nav-item"><div class="vl"></div></li> 
+					 <%-- <li class="nav-item"><div class="vl"></div></li> 
 					<li class="nav-item" id="navEnlgish" style="font-size:11px;margin-top: 2px;margin-left:2%;"> 
 					 <a class="nav-link" id="englishLang" href="${pageContext.request.contextPath}/englishOrg" ><spring:message code="label.contus.english" /></a>
 					</li>
 					<li class="nav-item" style="font-size:11px;margin-top: 2px;"> 
 					 <a class="nav-link" id="swishLang" href="${pageContext.request.contextPath}/svenskaOrg" ><spring:message code="label.contus.swedish" /></a>
-					</li>
+					</li> --%>
 				<%-- 	<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/svenska" ><spring:message code="label.contus.swedish" /></a></li>&nbsp;&nbsp; --%>
 					
 				</ul>
@@ -423,7 +440,7 @@ else
 			<!-- <div class="col-sm-1"></div> -->
 			<div class="col-sm-5">
 			<!-- <img  src="resources/orange.jpg" id="orangeImage" alt="Test Brief" style="width: 84%;margin-top:8%;height:500px;"> -->
-		<img  src="resources/mainImageCompany.png" class="img-responsive" id="handImage" alt="Test Brief" style="margin-left: -10%;max-width: 120%;margin-top: 8%;">
+		<img  src="resources/mainImageCompanyCrop.png" class="img-responsive" id="handImage" alt="Test Brief" style="margin-left: -10%;max-width: 120%;margin-top: 8%;">
 			</div>
 
 		</div>
@@ -1295,6 +1312,16 @@ button:active:focus, button:focus {
     font-family: Avenir next, sans-serif;
 }
 
+ @media only screen and (max-width: 1300px){
+.checkMarkClass {
+    width: 33px !important;
+    height: 37px !important;
+    margin-top: -2%;
+}
+ 
+ }
+  
+
 @media only screen and (max-width: 1090px){
 #linkFooterDiv{
 margin-left: -5%;
@@ -1373,7 +1400,7 @@ font-size: 23px !important;
 
 }
 
-@media only screen and (max-width: 790px){
+@media only screen and (max-width: 791px){
 
 #sendMsgText{
 font-size:14px !important;
@@ -1441,7 +1468,7 @@ margin-left: 12%;
 
 #handImage{
 margin-top: 10% !important;
-/* margin-left: -5% !important; */
+ margin-left: -5% !important; 
 
 }
 
@@ -1652,6 +1679,10 @@ font-size: 12px !important;
 display:none;
 }
 
+#swishLang , #englishLang , #swishLangMob , #englishLangMob{
+font-size: 11px !important;
+}
+
 }
 
   @media only screen and (max-width: 768px){
@@ -1659,22 +1690,34 @@ display:none;
   #contusLogoImg{
 width:60% !important;
 }
-  
+
  
  }
  
+
   @media only screen and (max-width: 767px){
  
   
- .vl{
- 
+.vl{
  display:none;
+}
+ 
+ 
+.langClass{ 
+ display:none !important;
  }
  
-  #contusLogoImg{
+#contusLogoImg{
 width:40% !important;
 }
-  
+   
+#langMobileView{
+display:block !important;
+}
+
+#swishLang, #englishLang , #swishLangMob , #englishLangMob {
+    font-size: 13px !important;
+}
  
  }
  
@@ -1708,10 +1751,15 @@ font-size: 18px !important;
 font-size: 10px !important;
 }
  
- .underlyingFooterLinks, .underlyingFooterContact {
+.underlyingFooterLinks, .underlyingFooterContact {
     font-size: 10px !important;
 }
  
+
+#langMobileView{
+ margin-left:21% !important;
+}
+  
  }
 
 
@@ -1805,7 +1853,8 @@ font-size: 14px !important;
   #handImage{
  
  width: 100% !important;
- margin-top: 11% !important;
+ margin-top: 20% !important;
+ margin-bottom: -15% !important;
  }
  
  #contactSpan{
@@ -1875,9 +1924,16 @@ margin-top:10% !important;
 height:110%;
 } 
  
+@media only screen and (max-width: 440px){
+
+#langMobileView{
+    margin-left: 18% !important;
+}
+
+}
  
 
-  @media only screen and (max-width: 375px){
+@media only screen and (max-width: 375px){
 
 #lowerContusData{
 font-size:19px !important;
@@ -1887,6 +1943,9 @@ font-size:19px !important;
     width: 65% !important;
 }
 
+#langMobileView{
+    margin-left: 10% !important;
+}
 
 }
 
@@ -1896,6 +1955,11 @@ font-size:19px !important;
 #lowerContusData {
     font-size: 15px !important;
 }
+
+#langMobileView{
+    margin-left: 0% !important;
+}
+
 
 } 
 
@@ -1915,7 +1979,7 @@ font-size:19px !important;
 
 $( document ).ready(function() {
 	
-	if(screen.width<=790 && screen.width>=765)
+	if(screen.width<=790 && screen.width>=767)
 	{
 		if(userLang=="sv")
 			{
@@ -1923,13 +1987,13 @@ $( document ).ready(function() {
 			}
 		else
 			{
-			$('#organizLik').css("width","129px");
+			$('#organizLik').css("width","131px");
 			}
 		
 	}
 	
 	
-	if(screen.width<765)
+	if(screen.width<767)
 	{
 		$('#testStartLink').css("width","100%");
 		$('#organizLik').css("width","100%");

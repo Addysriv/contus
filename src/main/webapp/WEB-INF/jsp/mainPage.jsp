@@ -53,7 +53,43 @@
 var toggleFlag=false;
 
 var defaultLang='${lang}';
+var userLang=defaultLang;
 $( document ).ready(function() {
+	
+	if(userLang=="sv")
+	{
+		console.log("The language is: Swedish - " + defaultLang);
+		
+		$("#englishLang").css("text-decoration","none");
+		$("#swishLang").css("text-decoration","underline");
+		$("#englishLangMob").css("text-decoration","none");
+		$("#swishLangMob").css("text-decoration","underline");
+		$('#impressDiv').css("margin-left","0px ");
+		$('#organizLik').css("width","175px");
+		$('#lowerContusData').css("font-size","27px");
+		$('#thankText').css("margin-left","11%");
+		$('#getBackText').css("margin-left","6%");
+		$('#testStartButton').css("margin-left","-6%");
+		$('#recaptcha-anchor-label').textContent='I am not a robot';
+		$('#testStartLink').css("width","108px");
+	}
+	else
+		{
+		console.log ("The language is: " + "English - "+defaultLang);
+		$("#englishLang").css("text-decoration","underline");
+		$("#swishLang").css("text-decoration","none");
+		$("#englishLangMob").css("text-decoration","underline");
+		$("#swishLangMob").css("text-decoration","none");
+		$('#impressDiv').css("margin-left","-2px");
+		$('#organizLik').css("width","159px");
+		$('#lowerContusData').css("font-size","25px");
+		$('#testStartButton').css("margin-left","-3%");
+		$('#recaptcha-anchor-label').textContent='I am not a robot';
+		$('#testStartLink').css("width","145px");
+		}
+	
+	
+	
 	
 	if(screen.width<=790 && screen.width>=550)
 	{
@@ -69,6 +105,19 @@ $( document ).ready(function() {
 		
 	}
 	
+	if(screen.width<=790 && screen.width>=767)
+	{
+
+		if(userLang=="sv")
+		{
+			$('#testStartLink').css("width","85px");
+		}
+		else
+		{
+			$('#testStartLink').css("width","116px");
+		}
+	}
+	
 	
 	$('#modalButton').hide();
 	$('#paymentDiv').hide();
@@ -76,33 +125,6 @@ $( document ).ready(function() {
 	$('#modalButtonForContactForm').hide();
 	/* var userLang = navigator.language || navigator.userLanguage; 
 	defaultLang=userLang; */
-	if(userLang=="sv")
-	{
-		console.log("The language is: Swedish - " + defaultLang);
-		
-		$("#englishLang").css("text-decoration","none");
-		$("#swishLang").css("text-decoration","underline");
-		$('#impressDiv').css("margin-left","0px ");
-		$('#organizLik').css("width","175px");
-		$('#lowerContusData').css("font-size","27px");
-		$('#thankText').css("margin-left","11%");
-		$('#getBackText').css("margin-left","6%");
-		$('#testStartButton').css("margin-left","-6%");
-		$('#recaptcha-anchor-label').textContent='I am not a robot';
-	}
-	else
-		{
-		console.log ("The language is: " + "English - "+defaultLang);
-		$("#englishLang").css("text-decoration","underline");
-		$("#swishLang").css("text-decoration","none");
-		$('#impressDiv').css("margin-left","-2px");
-		$('#organizLik').css("width","157px");
-		$('#lowerContusData').css("font-size","25px");
-		$('#testStartButton').css("margin-left","-3%");
-		$('#recaptcha-anchor-label').textContent='I am not a robot';
-		}
-	
-	
 	
 	$("#headerButton").on("click",function(){
 		
@@ -209,7 +231,13 @@ else
 			<a class="navbar-brand" href="#" id="contusLogo" ><img  id="contusLogoImg"
 				src="<c:url value="/resources/logo2.png" ></c:url>"
 				alt="Contus Logo" style="width: 20%;"> </a>
-
+			
+			<div id="langMobileView" style="margin-left: 25%;display:none;">
+				 <a class="" id="swishLangMob" style="color:black;font-size:14px;font-family: Avenir next, sans-serif;" href="${pageContext.request.contextPath}/svenska" >SVE</a>
+				 /
+				  <a class="" id="englishLangMob" style="color:black;font-size:14px;font-family: Avenir next, sans-serif;" href="${pageContext.request.contextPath}/english" >ENG</a>
+			</div>
+			
 			<button class="navbar-toggler" type="button" data-toggle="collapse"  id="headerButton"
 				data-target="#navbarResponsive">
 				<span class="navbar-toggler-icon"></span>
@@ -217,17 +245,24 @@ else
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" >
-					<li class="nav-item active" id="testStartLink" style="width: 145px;"><a class="nav-link" style="float: right;" onclick="startTest();" href="#"><spring:message code="label.contus.doTest" /></a></li>&nbsp;&nbsp;
+					<li class="nav-item langClass" id="navEnlgish" style="font-size:11px;margin-top: 2px;margin-left:2%;"> 
+					 <a class="nav-link " id="englishLang" href="${pageContext.request.contextPath}/english" ><spring:message code="label.contus.english" /></a>
+					</li>
+					<li class="nav-item langClass" style="font-size:11px;margin-top: 2px;margin-right: 1%;"> 
+					 <a class="nav-link" id="swishLang" href="${pageContext.request.contextPath}/svenska" ><spring:message code="label.contus.swedish" /></a>
+					</li> 
+					<li class="nav-item"><div class="vl"></div></li>
+					<li class="nav-item active" id="testStartLink" ><a class="nav-link" style="float: right;" onclick="startTest();" href="#"><spring:message code="label.contus.doTest" /></a></li>&nbsp;&nbsp;
 					  <li class="nav-item" id="organizLik" ><a class="nav-link"  href="${pageContext.request.contextPath}/organization"><spring:message code="label.contus.recruiters" /></a></li>&nbsp;&nbsp; 
 					<li class="nav-item"><a class="nav-link" href="#faqTitle" ><spring:message code="label.contus.faq" /></a></li>&nbsp;&nbsp;
 					<li class="nav-item"><a class="nav-link" href="#" onclick="contactForm();"><spring:message code="label.contus.contact" /></a></li>&nbsp;&nbsp;
-					 <li class="nav-item"><div class="vl"></div></li> 
+					<%--  <li class="nav-item"><div class="vl"></div></li> 
 					<li class="nav-item" id="navEnlgish" style="font-size:11px;margin-top: 2px;margin-left:2%;"> 
 					 <a class="nav-link" id="englishLang" href="${pageContext.request.contextPath}/english" ><spring:message code="label.contus.english" /></a>
 					</li>
 					<li class="nav-item" style="font-size:11px;margin-top: 2px;"> 
 					 <a class="nav-link" id="swishLang" href="${pageContext.request.contextPath}/svenska" ><spring:message code="label.contus.swedish" /></a>
-					</li>
+					</li> --%>
 				<%-- 	<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/svenska" ><spring:message code="label.contus.swedish" /></a></li>&nbsp;&nbsp; --%>
 					
 				</ul>
@@ -1295,14 +1330,15 @@ button:active:focus, button:focus {
 
 
 
- /* @media only screen and (max-width: 900px){
- #linkFooterDiv{
-    margin-left: -11%;
-    margin-right: 7%;
- }
+ @media only screen and (max-width: 1300px){
+.checkMarkClass {
+    width: 33px !important;
+    height: 37px !important;
+    margin-top: -2%;
+}
  
  }
-  */
+  
 
 @media only screen and (max-width: 1090px){
 #linkFooterDiv{
@@ -1375,7 +1411,7 @@ font-size: 23px !important;
 }
 
 
-@media only screen and (max-width: 790px){
+@media only screen and (max-width: 791px){
 
 #sendMsgText{
 font-size:14px !important;
@@ -1644,20 +1680,32 @@ display:none;
 margin-left:0% !important;
 }
 
+#swishLang , #englishLang , #swishLangMob , #englishLangMob {
+font-size: 11px !important;
+}
+
 }
  
  @media only screen and (max-width: 768px){
  
-  #contusLogoImg{
+ 
+ 
+#contusLogoImg{
 width:60% !important;
 }
   
- 
+
  }
  
   @media only screen and (max-width: 767px){
- 
   
+ .langClass{
+ 
+ display:none !important;
+ }
+ 
+ 
+ 
  .vl{
  
  display:none;
@@ -1667,6 +1715,13 @@ width:60% !important;
 width:40% !important;
 }
   
+#langMobileView{
+display:block !important;
+}
+
+#swishLang, #englishLang , #swishLangMob , #englishLangMob {
+    font-size: 13px !important;
+}
  
  }
  
@@ -1703,6 +1758,10 @@ font-size: 10px !important;
  .underlyingFooterLinks, .underlyingFooterContact {
     font-size: 10px !important;
 }
+ 
+ #langMobileView{
+ margin-left:21% !important;
+ }
  
  }
  
@@ -1850,6 +1909,13 @@ margin-top:10% !important;
 height:110%;
 } 
 
+@media only screen and (max-width: 440px){
+#langMobileView{
+    margin-left: 18% !important;
+}
+
+}
+
 @media only screen and (max-width: 375px){
 
 #lowerContusData{
@@ -1858,6 +1924,10 @@ font-size:19px !important;
 
 #contusLogoImg {
     width: 65% !important;
+}
+
+#langMobileView{
+    margin-left: 10% !important;
 }
 
 } 
@@ -1869,6 +1939,11 @@ font-size:19px !important;
 #lowerContusData {
     font-size: 15px !important;
 }
+
+#langMobileView{
+    margin-left: 0% !important;
+}
+
 
 } 
 
@@ -1888,20 +1963,25 @@ font-size:19px !important;
 
 $( document ).ready(function() {
 	
-	if(screen.width<=790 && screen.width>=765)
+	if(screen.width<=790 && screen.width>=767)
 	{
 		if(userLang=="sv")
 			{
-			$('#organizLik').css("width","137px");
+			$('#organizLik').css("width","138px");
 			}
 		else
 			{
-			$('#organizLik').css("width","125px");
+			$('#organizLik').css("width","126px");
 			}
 		
 	}
 	
-	if(screen.width<765)
+	if(screen.width==790)
+	{
+		
+	}
+	
+	if(screen.width<=767)
 	{
 		$('#testStartLink').css("width","100%");
 		$('#organizLik').css("width","100%");

@@ -59,7 +59,7 @@ public class AdminController {
 		logger.info(name);
 		logger.info(password);
 		
-		if(adminName.equalsIgnoreCase("Addy") && adminPassword.equals("Addysriv"))
+		if(name.equalsIgnoreCase("Addy") && password.equals("Addysriv"))
 		{
 			List<Coupon> couponList=paymentService.couponPresent();
 			

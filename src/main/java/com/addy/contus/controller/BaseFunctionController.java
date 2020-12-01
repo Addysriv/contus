@@ -220,11 +220,11 @@ public class BaseFunctionController {
 		request.getSession().setAttribute("userName",name);
 		map.put("lang", language);
 		Coupon coupon=paymentService.checkValidCoupon(couponCode);
-		String amount="19900";
+		String amount="199";
 		if(coupon==null)
 		{
 			request.getSession().setAttribute("couponCode","none");
-			request.getSession().setAttribute("couponAmount","19900");
+			request.getSession().setAttribute("couponAmount","199");
 		}
 		else {
 			request.getSession().setAttribute("couponCode",coupon.getCouponCode());
@@ -780,9 +780,14 @@ public class BaseFunctionController {
 	    return ex.getMessage();
 	  }
 
+	  @RequestMapping("/swishPaymentCompleted")
+		 public String swishPaymentCompletedMethod() {
+			logger.info("#################  Swish success message called ##################"); 
+		  
+			 return "success";
+		 }
 	 
-	 
-	 
+	  
 	 
 	 
 }

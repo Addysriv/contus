@@ -38,8 +38,8 @@
  var invalidErrorCode='<spring:message code="label.contus.invalidCoupon" />';
  var couponApplied='<spring:message code="label.contus.validCoupon" />';
  var currency= '<spring:message code="label.contus.sek" />';
- var swishPayeeErrorMsg="Mobile number not enrolled with swish."
- 
+ var swishPayeeErrorMsg='<spring:message code="label.contus.swishNumbNotEnrolled" />';
+	  
  
  function checkCheckBox(){
 	 if(document.getElementById('termsCheckBox').checked==true)
@@ -110,7 +110,7 @@ $( document ).ready(function() {
 							$('#userCoupon').css("background-color","rgba(255, 142, 34, 0.31)"); */	
 						}
 						else{
-							jqXHR=jqXHR.substring(0, 2)+"."+jqXHR.substring(2, 4);
+							//jqXHR=jqXHR.substring(0, 2)+"."+jqXHR.substring(2, 4);
 						$('#amountToPay').text(jqXHR);
 						$('#couponError').text(couponApplied+' '+jqXHR+' '+currency);
 						$('#couponError').css("color","orange");/* 
@@ -419,7 +419,7 @@ function startSwishConfiguration(){
 				
 				<span id="swishText" class="" style="margin-top: -5%;font-family: Avenir next, sans-serif;font-size: 15px;
 						font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: 2.4px;margin-left:10%;position: relative;bottom: 15%;"> 
-					(<spring:message code="label.contus.comingSoon" />)
+					<%-- (<spring:message code="label.contus.comingSoon" />) --%>
 				</span>
 				
 				</span>
