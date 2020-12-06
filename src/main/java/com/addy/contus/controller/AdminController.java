@@ -41,7 +41,7 @@ public class AdminController {
 	@Autowired
 	public PaymentService paymentService;
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/judo")
 	public String adminMethod(HttpServletRequest request,HttpServletResponse response,Model model,ModelMap map)
 	{
 		logger.info("&&&&&&&&&&&&&  Adimn Login Access Detected  &&&&&&&&&&&&&&&&");

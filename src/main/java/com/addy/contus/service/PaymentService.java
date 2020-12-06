@@ -41,4 +41,6 @@ public interface PaymentService {
 	public boolean saveSwishCustomerData(String custName,String custEmail,String mobile,String couponCode,String couponRedeemedNumb,String amount,String paymentMethod,HttpServletRequest request,String language); 
 	
 	public boolean sendContactForm(String name,String comppany,String email,String msg);
+	
+	public boolean updateSwishStatus(String orderId);
 }

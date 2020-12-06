@@ -264,6 +264,61 @@ public class ContusDao {
 		
 	}
 
+	public boolean updateOrderStatus(String orderId) {
+		
+		boolean flag=true;
+		
 
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(JdbcURL, Username, password);
+			logger.info("Your JDBC URL is as follows:" + JdbcURL);
+			try(Statement stmt=con.createStatement())
+			{
+				logger.info(stmt);
+				
+				logger.info("*********");
+				String query="update customers set order_status="+"'complete'"
+						+ "where order_id='"+orderId+"'";
+				logger.info("Query - "+query);
+				stmt.executeUpdate(query);  
+
+				con.close();
+				logger.info("successfull customer status updated");
+			}
+			catch(SQLException sqlExc)
+			{
+				flag=false;
+				logger.error("%%%%%%%%%%%% SQL error occured  %%%%%%%%%%%%%%");
+				logger.error("/n");
+				logger.error("Error : ",sqlExc);
+				if(con!=null)
+					con.close();
+			}
+
+
+
+		} catch (Exception exec) {
+			flag=false;
+			logger.error("%%%%%%%%%%%% Exception occured in updating cutomer status %%%%%%%%%%%%%%");
+			logger.error("/n");
+			logger.error("Error : ",exec);
+			if(con!=null)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					logger.error("%%%%%%%%%%%% Exception occured in closing connection  %%%%%%%%%%%%%%");
+					logger.error("/n");
+					logger.error("Error : ",e);
+				}
+		}
+
+
+
+		
+		return flag;
+		
+	}
 
 }

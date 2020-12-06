@@ -1,0 +1,15 @@
+2020-12-06 12:59:30 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/svenska]
+2020-12-06 12:59:30 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /svenska
+2020-12-06 12:59:30 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.setSvenskaLocale(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
+2020-12-06 12:59:30 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
+2020-12-06 12:59:30 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/svenska] is: -1
+2020-12-06 12:59:30 INFO  BaseFunctionController:422 - %%%%%%%%%%%%%%%% In Svenska Locale  %%%%%%%%%%%%%%%%%%
+2020-12-06 12:59:30 INFO  BaseFunctionController:426 - 
+2020-12-06 12:59:30 INFO  BaseFunctionController:427 - en-GB,en-US;q=0.9,en;q=0.8
+2020-12-06 12:59:30 INFO  BaseFunctionController:430 - 
+2020-12-06 12:59:30 INFO  BaseFunctionController:431 - GB
+2020-12-06 12:59:30 INFO  BaseFunctionController:432 - English
+2020-12-06 12:59:30 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
+2020-12-06 12:59:30 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
+2020-12-06 12:59:30 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
+2020-12-06 12:59:30 DEBUG DispatcherServlet:1000 - Successfully completed request

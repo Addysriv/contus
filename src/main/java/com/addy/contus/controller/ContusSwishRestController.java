@@ -1,6 +1,6 @@
 package com.addy.contus.controller;
 
-import java.io.FileNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +16,7 @@ public class ContusSwishRestController {
   SwissPaymentGatewayService swissPaymentGatewayService;
   
   @GetMapping(value = "/swish-get-paymentStatus")
-  public String getPaymentStatusForSwish(@RequestParam(value="swishPaymentCheckurl",required=false) String swishPaymentCheckurl) throws FileNotFoundException {
+  public String getPaymentStatusForSwish(@RequestParam(value="swishPaymentCheckurl",required=false) String swishPaymentCheckurl)  {
 	  
 	  String response=swissPaymentGatewayService.getPaymentRequest(swishPaymentCheckurl);
 	  String returnUrl="";
@@ -28,6 +28,7 @@ public class ContusSwishRestController {
 	  {
 		  response+=":choice";
 	  }
+	
 	  return response;
     
   }

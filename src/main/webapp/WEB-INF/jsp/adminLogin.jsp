@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="icon" href="resources/Logo.png" type="image/icon type">
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -31,12 +33,11 @@
 
 <title>Contus Admin</title>
 <style>
-body {
+/* body {
 	background-color: rgba(255, 142, 34, 0.31);
 
-	/* background-image:url("resources/klarna.jpg"); */
 }
-
+ */
 #adminTitle {
 	float: right;
 	font-size: 51px;

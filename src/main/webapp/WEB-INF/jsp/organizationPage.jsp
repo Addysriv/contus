@@ -92,7 +92,7 @@ $( document ).ready(function() {
 		$('#lowerContusData').css("font-size","27px");
 		$('#thankText').css("margin-left","11%");
 		$('#getBackText').css("margin-left","6%");
-		$('#testStartLink').css("width","101px");
+		$('#testStartLink').css("width","102px");
 	}
 	else
 		{

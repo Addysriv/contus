@@ -831,8 +831,16 @@ public class PaymentServiceImpl implements PaymentService {
 		}
 
 		return dataSaved;
-}
+	}
 	
+	public boolean updateSwishStatus(String orderId) {
+		boolean flag=false;
+		
+		flag=contusDao.updateOrderStatus(orderId);
+		
+		return flag;
+		
+	}
 	
 	public boolean sendContactForm(String name,String company,String email,String msg)
 	{

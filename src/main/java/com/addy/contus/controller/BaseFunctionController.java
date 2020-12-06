@@ -3,6 +3,7 @@ package com.addy.contus.controller;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Locale;
+import java.util.Optional;
 import java.net.ProtocolException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -174,11 +175,20 @@ public class BaseFunctionController {
 				}
 			}
 		}
-		else if(payment!=null && payment.equalsIgnoreCase("swish")) {
+		else if(payment!=null && (payment.equalsIgnoreCase("swish") || payment.equalsIgnoreCase("swishMob"))) {
 			// confirm order status then save in DB then transfer according to respective URL.
 			
 			logger.info(" !!!!!!!!!! Swish Payment completed , transferring to test. !!!!!!!");
 			try {
+				
+				if(paymentService.updateSwishStatus(orderId)) {
+					
+					logger.info("!!!!!!!!! Payment status updated !!!!!!!!!!");
+				}
+				else
+				{
+					logger.info("!!!!!!!!! Payment status failed to update for order id "+orderId+"  !!!!!!!!!!");
+				}
 				//logger.info("*******"+request.getSession().getId());
 				request.getSession().setAttribute("validRequest", "true");
 				response.sendRedirect(request.getContextPath()+"/test");
@@ -270,12 +280,12 @@ public class BaseFunctionController {
 			 }
 			 else {
 					if(coupon==null) {
-						boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, null, null, amount, "Swish",request,language);
+						boolean dataSaved=paymentService.saveSwishCustomerData(name, email,mobileNumb, null, null, amount, "Swish",request,language);
 						logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
 						
 					}
 					else {
-						boolean dataSaved=paymentService.saveCustomerData(name, email,mobileNumb, couponCode, String.valueOf(coupon.getRedeemedNumb()), coupon.getAmount(), "Swish",request,language);
+						boolean dataSaved=paymentService.saveSwishCustomerData(name, email,mobileNumb, couponCode, String.valueOf(coupon.getRedeemedNumb()), coupon.getAmount(), "Swish",request,language);
 						logger.info(" !!!!!!!! Swish Payment customer data saved status - "+dataSaved);
 					}
 			 }
