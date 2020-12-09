@@ -46,6 +46,15 @@
 <!-- <link rel="stylesheet" type="text/css" href="resources/css/customFrontPage.css"> -->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-184719553-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-184719553-1');
+</script>
 
 
 </head>

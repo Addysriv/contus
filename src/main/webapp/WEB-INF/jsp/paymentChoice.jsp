@@ -43,6 +43,17 @@
 
 <title>Contus</title>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-184719553-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-184719553-1');
+</script>
+
+
 <style>
 .modalText{
 	text-align: center;
@@ -1068,6 +1079,30 @@ width: 290px;
 
 
 
+@media only screen and (max-width: 970px){
+
+#resultDiv{
+margrin-left:-14% !important;
+}
+
+#homePage {
+    width: 156px  !important;
+    height: 35px  !important;
+    border-radius: 30px  !important;
+    background-color: #ff7d00  !important;
+    margin-left: 32%  !important;
+    font-weight: 500 !important;
+    
+}
+
+#resultText{
+font-size: 16px !important; 
+margin-left: 0% !important;
+}
+
+
+
+}
 
 @media only screen and (max-width: 700px){
 
@@ -1109,6 +1144,13 @@ display:block !important;
 
 }
 
+
+@media only screen and (max-width: 600px){
+#resultDiv{
+margin-left: -12% !important;
+}
+
+}
 </style>
 
 </html>

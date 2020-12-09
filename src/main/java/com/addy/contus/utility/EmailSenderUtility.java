@@ -102,8 +102,8 @@ public class EmailSenderUtility {
 	      String password = contusPass;
 
 	      Properties props = new Properties();
-	        props.put("mail.smtp.host", HOST);
-	        props.put("mail.smtp.socketFactory.port", SOCKET_PORT);
+	        props.put("mail.smtp.host", "mailcluster.loopia.se");
+	        props.put("mail.smtp.socketFactory.port", "143");
 	        props.put("mail.smtp.socketFactory.class",SOCKET_FACTORY);
 	        props.put("mail.smtp.auth", AUTH);
 	        props.put("mail.smtp.port", SMTP_PORT);

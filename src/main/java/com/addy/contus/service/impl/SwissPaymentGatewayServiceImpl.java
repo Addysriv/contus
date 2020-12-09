@@ -5,10 +5,12 @@ import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Set;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSocketFactory;
@@ -78,7 +80,7 @@ public class SwissPaymentGatewayServiceImpl implements SwissPaymentGatewayServic
 	public String createSwissPaymentGateway(String amount,String payerAlias)  {
 
 		HttpsURLConnection connection = null;
-		logger.info("######### In swish oayment gateway service ############");
+		logger.info("######### In swish payment gateway service ############");
 		try {
 			logger.info(" Amount - "+amount +" payerAlias - "+payerAlias);
 			
@@ -235,6 +237,14 @@ public class SwissPaymentGatewayServiceImpl implements SwissPaymentGatewayServic
 		} catch (Exception e) {
 			logger.info("Error occured in checking the status of swish payment.");
 			logger.info("### Swish checkout payment url - "+checkSwishPaymenturl);
+			
+			Properties p=System.getProperties();
+			Enumeration keys = p.keys();
+			while (keys.hasMoreElements()) {
+			    String key = (String)keys.nextElement();
+			    String value = (String)p.get(key);
+			    System.out.println(key + ": " + value);
+			}
 
 			//e.printStackTrace();
 			return null;
@@ -255,7 +265,7 @@ public class SwissPaymentGatewayServiceImpl implements SwissPaymentGatewayServic
 		System.setProperty("javax.net.ssl.trustStoreType", trustStoreType);
 
 		System.setProperty("contus.system.swishpaymenturl", testSwishPaymentRequesturl);
-
+		
 	}
 
 	public void setProductionSwish() {

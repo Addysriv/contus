@@ -1,31 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- -->
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/customFrontPage.css">
-
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	
-<!-- jQuery library -->
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
-	
-<script src="resources/js/frontPage.js"></script>
-	
-	
 <script>
 
  var defaultLanguage='';
@@ -445,8 +418,6 @@ function startSwishConfiguration(paymentRequestInfo){
 }
 
 </script>
-</head>
-<body>
 
 
 <div id="userInfo">
@@ -533,10 +504,12 @@ function startSwishConfiguration(paymentRequestInfo){
 				
 				<span class="" id="swishImageDiv">
 					<img src="resources/swishNew.png" id="swishImage" style="width: 80px;height: 24px;margin-left: 7%;margin-top: -2%;"/> 
+					<!-- <img src="resources/mobileSwish.webp" id="swishImage" style="width: 64px;height: 60px;margin-top: -2%;"/>  -->
+					
 				<br><br>
 				<span id="swishText" class="" style="margin-top: -5%;font-family: Avenir next, sans-serif;font-size: 11px;
 						font-stretch: normal;font-style: normal;line-height: normal;letter-spacing: 2.4px;margin-left:10%;position: relative;bottom: 15%;"> 
-					 (Swish App should be installed on device) 
+					 (<spring:message code="label.swishAppInstalled" />) 
 				</span>
 				
 				</span>
@@ -695,7 +668,6 @@ function startSwishConfiguration(paymentRequestInfo){
 
 
 
-</body>
 
 <style>
 
@@ -1139,6 +1111,3 @@ margin-left:2% !important;
 }
 
 </style>
-
-
-</html>

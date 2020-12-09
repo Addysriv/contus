@@ -2,8 +2,10 @@ package com.addy.contus.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Properties;
 import java.net.ProtocolException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -580,7 +582,13 @@ public class BaseFunctionController {
 								HttpServletRequest request,HttpServletResponse response) {
 		
 			String secretKey="?secret="+captchaSecretKey+"&response="+captchaResponse;
-			
+			Properties p=System.getProperties();
+			Enumeration keys = p.keys();
+			while (keys.hasMoreElements()) {
+			    String key = (String)keys.nextElement();
+			    String value = (String)p.get(key);
+			    System.out.println(key + ": " + value);
+			}
 			
 			ReCaptchaResponse captchaResult=restTemplate.exchange(captchaUrl+secretKey,HttpMethod.POST,null,ReCaptchaResponse.class ).getBody();
 			
@@ -661,7 +669,7 @@ public class BaseFunctionController {
 	}
 	
 	@RequestMapping("/testThread")
-	public String testThreadMethod(HttpServletRequest request,HttpServletResponse response)
+	public String testThreadMethod(HttpServletRequest request,HttpServletResponse response,@RequestParam(value="email") String userEmail,@RequestParam(value="lng") String lang)
 	{
 		//boolean result=emailUtility.sendReportToCustomerMail("ed15247e-72a1-60fe-838a-a9971abd2a16", "English","","", captchaSecretKey, captchaSecretKey);
 		
@@ -708,12 +716,12 @@ public class BaseFunctionController {
 		result.conscientiousness.c2Orderliness=7;
 		result.conscientiousness.c3Dutifulness=15;
 		result.conscientiousness.c4AchievementStriving=19;
-		result.conscientiousness.c5SelfDiscipline=20;
+		result.conscientiousness.c5SelfDiscipline=0;
 		result.conscientiousness.c6Cautiousness=0;
 		result.conscientiousness.totalPercentage=50.0;
 
-		ContusThreadUtility utility=new ContusThreadUtility(result,"addyPdf","sv","addysriv25@gmail.com","Addy");
-		
+		ContusThreadUtility utility=new ContusThreadUtility(result,"addyPdf",lang,userEmail,"Addy");
+	//	ContusThreadUtility utility=new ContusThreadUtility(result,"addyPdf","en","addysriv27@gmail.com","Addy");
 		utility.start(); 
 		
 		return "success";
