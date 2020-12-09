@@ -1,219 +1,24 @@
-2020-12-07 23:00:40 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:00:40 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:00:40 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:00:40 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:00:40 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:00:40 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:00:40 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:00:40 INFO  BaseFunctionController:342 - 
-2020-12-07 23:00:40 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:00:40 INFO  BaseFunctionController:344 - English
-2020-12-07 23:00:40 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:00:40 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:00:40 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:00:40 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:00:40 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:00:42 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/resources/Logo.png]
-2020-12-07 23:00:42 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /resources/Logo.png
-2020-12-07 23:00:42 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/resources/Logo.png]
-2020-12-07 23:00:42 DEBUG SimpleUrlHandlerMapping:192 - Matching patterns for request [/resources/Logo.png] are [/resources/**]
-2020-12-07 23:00:42 DEBUG SimpleUrlHandlerMapping:226 - URI Template variables for request [/resources/Logo.png] are {}
-2020-12-07 23:00:42 DEBUG SimpleUrlHandlerMapping:140 - Mapping [/resources/Logo.png] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[ServletContext resource [/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@220834a0]]] and 1 interceptor
-2020-12-07 23:00:42 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/resources/Logo.png] is: -1
-2020-12-07 23:00:42 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'spring': assuming HandlerAdapter completed request handling
-2020-12-07 23:00:42 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:01:31 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/organization]
-2020-12-07 23:01:31 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /organization
-2020-12-07 23:01:31 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.organizationPageSwitch(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:01:31 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:01:31 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/organization] is: -1
-2020-12-07 23:01:31 INFO  BaseFunctionController:102 - English
-2020-12-07 23:01:31 INFO  BaseFunctionController:103 - ****** sv
-2020-12-07 23:01:31 DEBUG DefaultListableBeanFactory:1670 - Invoking afterPropertiesSet() on bean with name 'organizationPage'
-2020-12-07 23:01:31 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'organizationPage'; URL [/WEB-INF/jsp/organizationPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:01:31 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'organizationPage'
-2020-12-07 23:01:31 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/organizationPage.jsp] in InternalResourceView 'organizationPage'
-2020-12-07 23:01:31 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:01:32 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/resources/mainImageCompanyCrop.png]
-2020-12-07 23:01:32 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /resources/mainImageCompanyCrop.png
-2020-12-07 23:01:32 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/resources/mainImageCompanyCrop.png]
-2020-12-07 23:01:32 DEBUG SimpleUrlHandlerMapping:192 - Matching patterns for request [/resources/mainImageCompanyCrop.png] are [/resources/**]
-2020-12-07 23:01:32 DEBUG SimpleUrlHandlerMapping:226 - URI Template variables for request [/resources/mainImageCompanyCrop.png] are {}
-2020-12-07 23:01:32 DEBUG SimpleUrlHandlerMapping:140 - Mapping [/resources/mainImageCompanyCrop.png] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[ServletContext resource [/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@220834a0]]] and 1 interceptor
-2020-12-07 23:01:32 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/resources/mainImageCompanyCrop.png] is: -1
-2020-12-07 23:01:32 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'spring': assuming HandlerAdapter completed request handling
-2020-12-07 23:01:32 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:02:39 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/organization]
-2020-12-07 23:02:39 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /organization
-2020-12-07 23:02:39 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.organizationPageSwitch(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:02:39 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:02:39 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/organization] is: -1
-2020-12-07 23:02:39 INFO  BaseFunctionController:102 - English
-2020-12-07 23:02:39 INFO  BaseFunctionController:103 - ****** sv
-2020-12-07 23:02:39 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'organizationPage'; URL [/WEB-INF/jsp/organizationPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:02:39 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'organizationPage'
-2020-12-07 23:02:39 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/organizationPage.jsp] in InternalResourceView 'organizationPage'
-2020-12-07 23:02:39 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:02:40 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/resources/Logo.png]
-2020-12-07 23:02:40 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /resources/Logo.png
-2020-12-07 23:02:40 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/resources/Logo.png]
-2020-12-07 23:02:40 DEBUG SimpleUrlHandlerMapping:192 - Matching patterns for request [/resources/Logo.png] are [/resources/**]
-2020-12-07 23:02:40 DEBUG SimpleUrlHandlerMapping:226 - URI Template variables for request [/resources/Logo.png] are {}
-2020-12-07 23:02:40 DEBUG SimpleUrlHandlerMapping:140 - Mapping [/resources/Logo.png] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[ServletContext resource [/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@220834a0]]] and 1 interceptor
-2020-12-07 23:02:40 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/resources/Logo.png] is: -1
-2020-12-07 23:02:40 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'spring': assuming HandlerAdapter completed request handling
-2020-12-07 23:02:40 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:03:07 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:03:07 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:03:07 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:03:07 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:03:07 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:03:07 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:03:07 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:03:07 INFO  BaseFunctionController:342 - 
-2020-12-07 23:03:07 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:03:07 INFO  BaseFunctionController:344 - English
-2020-12-07 23:03:07 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:03:07 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:03:07 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:03:07 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:03:07 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:03:43 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:03:43 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:03:43 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:03:43 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:03:43 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:03:43 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:03:43 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:03:43 INFO  BaseFunctionController:342 - 
-2020-12-07 23:03:43 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:03:43 INFO  BaseFunctionController:344 - English
-2020-12-07 23:03:43 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:03:43 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:03:43 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:03:43 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:03:43 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:04:34 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:04:34 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:04:34 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:04:34 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:04:34 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:04:34 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:04:34 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:04:34 INFO  BaseFunctionController:342 - 
-2020-12-07 23:04:34 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:04:34 INFO  BaseFunctionController:344 - English
-2020-12-07 23:04:34 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:04:34 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:04:34 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:04:34 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:04:35 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:15 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:07:15 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:07:15 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:07:15 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:07:15 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:07:15 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:07:15 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:07:15 INFO  BaseFunctionController:342 - 
-2020-12-07 23:07:15 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:07:15 INFO  BaseFunctionController:344 - English
-2020-12-07 23:07:15 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:07:15 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:07:15 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:07:15 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:07:15 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:16 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/resources/Logo.png]
-2020-12-07 23:07:16 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /resources/Logo.png
-2020-12-07 23:07:16 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/resources/Logo.png]
-2020-12-07 23:07:16 DEBUG SimpleUrlHandlerMapping:192 - Matching patterns for request [/resources/Logo.png] are [/resources/**]
-2020-12-07 23:07:16 DEBUG SimpleUrlHandlerMapping:226 - URI Template variables for request [/resources/Logo.png] are {}
-2020-12-07 23:07:16 DEBUG SimpleUrlHandlerMapping:140 - Mapping [/resources/Logo.png] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[ServletContext resource [/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@220834a0]]] and 1 interceptor
-2020-12-07 23:07:16 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/resources/Logo.png] is: -1
-2020-12-07 23:07:16 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'spring': assuming HandlerAdapter completed request handling
-2020-12-07 23:07:16 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:18 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/organization]
-2020-12-07 23:07:18 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /organization
-2020-12-07 23:07:18 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.organizationPageSwitch(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:07:18 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:07:18 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/organization] is: -1
-2020-12-07 23:07:18 INFO  BaseFunctionController:102 - English
-2020-12-07 23:07:18 INFO  BaseFunctionController:103 - ****** sv
-2020-12-07 23:07:18 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'organizationPage'; URL [/WEB-INF/jsp/organizationPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:07:18 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'organizationPage'
-2020-12-07 23:07:18 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/organizationPage.jsp] in InternalResourceView 'organizationPage'
-2020-12-07 23:07:18 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:30 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/organization]
-2020-12-07 23:07:30 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /organization
-2020-12-07 23:07:30 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.organizationPageSwitch(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.Model,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:07:30 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:07:30 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/organization] is: -1
-2020-12-07 23:07:30 INFO  BaseFunctionController:102 - English
-2020-12-07 23:07:30 INFO  BaseFunctionController:103 - ****** sv
-2020-12-07 23:07:30 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'organizationPage'; URL [/WEB-INF/jsp/organizationPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:07:30 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'organizationPage'
-2020-12-07 23:07:30 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/organizationPage.jsp] in InternalResourceView 'organizationPage'
-2020-12-07 23:07:30 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:31 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/resources/Logo.png]
-2020-12-07 23:07:31 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /resources/Logo.png
-2020-12-07 23:07:31 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/resources/Logo.png]
-2020-12-07 23:07:31 DEBUG SimpleUrlHandlerMapping:192 - Matching patterns for request [/resources/Logo.png] are [/resources/**]
-2020-12-07 23:07:31 DEBUG SimpleUrlHandlerMapping:226 - URI Template variables for request [/resources/Logo.png] are {}
-2020-12-07 23:07:31 DEBUG SimpleUrlHandlerMapping:140 - Mapping [/resources/Logo.png] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[ServletContext resource [/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@220834a0]]] and 1 interceptor
-2020-12-07 23:07:31 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/resources/Logo.png] is: -1
-2020-12-07 23:07:31 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'spring': assuming HandlerAdapter completed request handling
-2020-12-07 23:07:31 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:33 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:07:33 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:07:33 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:07:33 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:07:33 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:07:33 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:07:33 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:07:33 INFO  BaseFunctionController:342 - 
-2020-12-07 23:07:33 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:07:33 INFO  BaseFunctionController:344 - English
-2020-12-07 23:07:33 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:07:33 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:07:33 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:07:33 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:07:33 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:07:52 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:07:52 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:07:52 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:07:52 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:07:52 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:07:52 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:07:52 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:07:52 INFO  BaseFunctionController:342 - 
-2020-12-07 23:07:52 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:07:52 INFO  BaseFunctionController:344 - English
-2020-12-07 23:07:52 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:07:52 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:07:52 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:07:52 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:07:52 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:09:20 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
-2020-12-07 23:09:20 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
-2020-12-07 23:09:20 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
-2020-12-07 23:09:20 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
-2020-12-07 23:09:20 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
-2020-12-07 23:09:20 INFO  BaseFunctionController:320 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
-2020-12-07 23:09:20 INFO  BaseFunctionController:324 - ************* null
-2020-12-07 23:09:20 INFO  BaseFunctionController:342 - 
-2020-12-07 23:09:20 INFO  BaseFunctionController:343 - GB
-2020-12-07 23:09:20 INFO  BaseFunctionController:344 - English
-2020-12-07 23:09:20 INFO  BaseFunctionController:345 - en-GB,en-US;q=0.9,en;q=0.8
-2020-12-07 23:09:20 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
-2020-12-07 23:09:20 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
-2020-12-07 23:09:20 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
-2020-12-07 23:09:20 DEBUG DispatcherServlet:1000 - Successfully completed request
-2020-12-07 23:09:22 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/resources/Logo.png]
-2020-12-07 23:09:22 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /resources/Logo.png
-2020-12-07 23:09:22 DEBUG RequestMappingHandlerMapping:320 - Did not find handler method for [/resources/Logo.png]
-2020-12-07 23:09:22 DEBUG SimpleUrlHandlerMapping:192 - Matching patterns for request [/resources/Logo.png] are [/resources/**]
-2020-12-07 23:09:22 DEBUG SimpleUrlHandlerMapping:226 - URI Template variables for request [/resources/Logo.png] are {}
-2020-12-07 23:09:22 DEBUG SimpleUrlHandlerMapping:140 - Mapping [/resources/Logo.png] to HandlerExecutionChain with handler [ResourceHttpRequestHandler [locations=[ServletContext resource [/resources/]], resolvers=[org.springframework.web.servlet.resource.PathResourceResolver@220834a0]]] and 1 interceptor
-2020-12-07 23:09:22 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/resources/Logo.png] is: -1
-2020-12-07 23:09:22 DEBUG DispatcherServlet:1044 - Null ModelAndView returned to DispatcherServlet with name 'spring': assuming HandlerAdapter completed request handling
-2020-12-07 23:09:22 DEBUG DispatcherServlet:1000 - Successfully completed request
+2020-12-09 18:25:45 DEBUG DispatcherServlet:865 - DispatcherServlet with name 'spring' processing GET request for [/Contus/home]
+2020-12-09 18:25:45 DEBUG RequestMappingHandlerMapping:310 - Looking up handler method for path /home
+2020-12-09 18:25:45 DEBUG RequestMappingHandlerMapping:317 - Returning handler method [public java.lang.String com.addy.contus.controller.BaseFunctionController.mainPage(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,org.springframework.ui.ModelMap,javax.servlet.http.HttpSession)]
+2020-12-09 18:25:45 DEBUG DefaultListableBeanFactory:251 - Returning cached instance of singleton bean 'baseFunctionController'
+2020-12-09 18:25:45 DEBUG DispatcherServlet:951 - Last-Modified value for [/Contus/home] is: -1
+2020-12-09 18:25:45 INFO  BaseFunctionController:327 - %%%%%%%%%%%%%%%% I main home method %%%%%%%%%%%%%%%%%%
+2020-12-09 18:25:45 INFO  BaseFunctionController:331 - ************* null
+2020-12-09 18:25:45 INFO  BaseFunctionController:349 - 
+2020-12-09 18:25:45 INFO  BaseFunctionController:350 - GB
+2020-12-09 18:25:45 INFO  BaseFunctionController:351 - English
+2020-12-09 18:25:45 INFO  BaseFunctionController:352 - en-GB,en-US;q=0.9,en;q=0.8
+2020-12-09 18:25:45 DEBUG DefaultListableBeanFactory:1670 - Invoking afterPropertiesSet() on bean with name 'mainPage'
+2020-12-09 18:25:45 DEBUG DispatcherServlet:1276 - Rendering view [org.springframework.web.servlet.view.JstlView: name 'mainPage'; URL [/WEB-INF/jsp/mainPage.jsp]] in DispatcherServlet with name 'spring'
+2020-12-09 18:25:45 DEBUG JstlView:432 - Added model object 'lang' of type [java.lang.String] to request in view with name 'mainPage'
+2020-12-09 18:25:45 DEBUG JstlView:166 - Forwarding to resource [/WEB-INF/jsp/mainPage.jsp] in InternalResourceView 'mainPage'
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:488 - Loading properties [labelmsgs.properties]
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:488 - Loading properties [labelmsgs_en.properties]
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:444 - No properties file found for [/WEB-INF/label/labelmsgs_en_IN] - neither plain properties nor XML
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:488 - Loading properties [labelmsgs_sv.properties]
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:488 - Loading properties [error_msg.properties]
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:444 - No properties file found for [/WEB-INF/validationmessages/error_msg_en] - neither plain properties nor XML
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:444 - No properties file found for [/WEB-INF/validationmessages/error_msg_en_IN] - neither plain properties nor XML
+2020-12-09 18:25:48 DEBUG ReloadableResourceBundleMessageSource:444 - No properties file found for [/WEB-INF/validationmessages/error_msg_sv] - neither plain properties nor XML
+2020-12-09 18:25:49 DEBUG DispatcherServlet:1000 - Successfully completed request

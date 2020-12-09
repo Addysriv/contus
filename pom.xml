@@ -222,7 +222,13 @@
 		    <artifactId>jfreechart</artifactId>
 		    <version>1.0.14</version>
 		</dependency>
-		
+
+<!-- 	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.5.13</version>
+	</dependency>
+		 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 	<!-- 	<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -235,7 +241,8 @@
 	</dependencies>
 	<build>
 		<finalName>contus</finalName>
-
+	
+	
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>

@@ -2,11 +2,14 @@ package com.addy.contus.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Enumeration;
 import java.util.Locale;
-import java.util.Optional;
-import java.util.Properties;
+
 import java.net.ProtocolException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +29,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -91,7 +93,12 @@ public class BaseFunctionController {
 	@Value("${captchaVerifSecretKey}")
 	public String captchaSecretKey;
 	
-	
+	@Value("${trustStore}")
+	private String  trustStoreFileLocation;
+
+	@Value("${trustStorePassword}")
+	private String trustStorePassword;
+
 	
 	private static final Logger logger = Logger.getLogger(BaseFunctionController.class);
 	
@@ -579,20 +586,24 @@ public class BaseFunctionController {
 	public @ResponseBody String submitContactFormMethod(@RequestParam(value="contactName") String name,	@RequestParam(value="contactEmail") String email,
 								@RequestParam("contactCompany") String company,	@RequestParam("contactComment")String message,	
 								@RequestParam("gresponse")String captchaResponse,
-								HttpServletRequest request,HttpServletResponse response) {
+								HttpServletRequest request,HttpServletResponse response) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, CertificateException, IOException {
 		
-			String secretKey="?secret="+captchaSecretKey+"&response="+captchaResponse;
-			Properties p=System.getProperties();
-			Enumeration keys = p.keys();
-			while (keys.hasMoreElements()) {
-			    String key = (String)keys.nextElement();
-			    String value = (String)p.get(key);
-			    System.out.println(key + ": " + value);
-			}
-			
-			ReCaptchaResponse captchaResult=restTemplate.exchange(captchaUrl+secretKey,HttpMethod.POST,null,ReCaptchaResponse.class ).getBody();
-			
-			logger.info("Captcha verification - "+captchaResult.isSuccess());
+		  String secretKey="?secret="+captchaSecretKey+"&response="+captchaResponse;
+          
+          /*SSLContext sslContext = new SSLContextBuilder()
+                  .loadTrustMaterial( new ClassPathResource(trustStoreFileLocation).getFile(), trustStorePassword.toCharArray())
+                  .build();
+          System.out.println("Is it using this bean");
+          SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext);
+          HttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory).build();
+          HttpComponentsClientHttpRequestFactory factory =
+              new HttpComponentsClientHttpRequestFactory(httpClient);
+          
+          final RestTemplate restTemplate = new RestTemplate(factory);*/
+          
+          ReCaptchaResponse captchaResult=restTemplate.exchange(captchaUrl+secretKey,HttpMethod.POST,null,ReCaptchaResponse.class ).getBody();
+          
+          logger.info("Captcha verification - "+captchaResult.isSuccess());
 			
 			if(!captchaResult.isSuccess())
 			{
