@@ -10,7 +10,7 @@ public class PdfTextDataSwedish implements PdfTextData {
 			"motstånd, öppenhet för nya idéer och hur personen placerar sig på skalan. ";
 	public String resultStatement2="Det finns inga rätta eller felaktiga svar. Testet visar snarare i vilken miljö personen känner och fungerar bäst. " + 
 			"Den professionella rollen för hur personliga egenskaper kan stärka ett team bör avgöra vilka personlighetsdrag som är mest lämpliga. " + 
-			"Alla poäng är på en skala från 100. ";
+			"Alla poäng är på en skala från 1 till 100. ";
 	
 	public String score="Poäng : ";
 	public String high="Hög";
@@ -34,7 +34,7 @@ public class PdfTextDataSwedish implements PdfTextData {
 			"specifik negativ känsla som ångest, ilska eller depression, men kommer sannolikt att uppleva flera av dessa känslor. " + 
 			"Människor som ligger högt på skalan i Neuroticism är känslomässnigt reaktiva. De svarar känslomässigt på händelser som inte påverkar mest" + 
 			"människor, och deras reaktioner tenderar att vara mer intensiva än normalt. De är mer benägna att tolka vanliga situationer som" + 
-			"hotande och mindre frustrationer som hopplöst svåra. Deras negativa känslomässiga reaktioner tenderar att kvarstå" + 
+			"hotande och mindre frustrationer som hopplöst svåra. Deras negativa känslomässiga reaktioner tenderar att kvarstå " + 
 			"ovanligt långa tidsperioder, vilket innebär att de ofta har dåligt humör. Dessa problem i emotionell reglering" + 
 			"kan minska en neurotisk förmåga att tänka klart, fatta beslut och hantera stress effektivt. ";
 	
@@ -197,7 +197,7 @@ public class PdfTextDataSwedish implements PdfTextData {
 			"principlösa eller omoraliska; de är helt enkelt mer reserverade och mindre villiga att öppet avslöja hela sanningen. ";
 	public String facetA3="Altruism";
 	public String a3Info="Altruistiska människor tycker att det är mycket givande att hjälpa andra människor. Följaktligen är de i allmänhet villiga att hjälpa " + 
-			"de som är i nöd. Altruistiska människor tycker att att göra saker för andra är en form av självuppfyllelse snarare än självuppoffring. Personer med låga poäng på denna skala gillar inte särskilt mycket att hjälpa dem i nöd. Begäran om hjälp känns som en " + 
+			"de som är i nöd. Altruistiska människor tycker att göra saker för andra är en form av självuppfyllelse snarare än självuppoffring. Personer med låga poäng på denna skala gillar inte särskilt mycket att hjälpa dem i nöd. Begäran om hjälp känns som en " + 
 			"börda snarare än en möjlighet till självuppfyllelse. ";
 	public String facetA4="Sammarbete";
 	public String a4Info="Individer som gör höga poäng på denna skala ogillar konfrontationer. De är mycket villiga att kompromissa eller förneka " + 
